@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   description: "Follow Max's racing journey from sim to reality. 13-year-old iRacing driver building a transparent, community-supported path to professional motorsports.",
   keywords: ["iRacing", "sim racing", "motorsports", "racing", "young driver", "esports"],
   authors: [{ name: "Rocky Racing Team" }],
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/icon.png',
+  },
   openGraph: {
     title: "Rocky Racing - From Sim to Reality",
     description: "Follow Max's racing journey from sim to reality. 13-year-old iRacing driver building a transparent, community-supported path to professional motorsports.",
