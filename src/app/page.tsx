@@ -55,8 +55,8 @@ export default function Home() {
             />
           </div>
           
-          {/* MASSIVE Title - Enhanced Visibility */}
-          <h1 className="font-heading text-7xl sm:text-8xl lg:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-rr-gold via-rr-speed-yellow to-rr-gold mb-4 tracking-wider drop-shadow-2xl" style={{textShadow: '0 0 30px rgba(212, 175, 55, 0.9), 0 0 60px rgba(212, 175, 55, 0.7), 0 4px 12px rgba(0, 0, 0, 0.95)'}}>
+          {/* MASSIVE Title - Crystal Clear Gold */}
+          <h1 className="font-heading text-7xl sm:text-8xl lg:text-9xl text-rr-gold mb-4 tracking-wider font-black" style={{textShadow: '0 0 40px rgba(212, 175, 55, 1), 0 0 80px rgba(212, 175, 55, 0.8), 0 6px 15px rgba(0, 0, 0, 1)'}}>
             ROCKY RACING
           </h1>
           
@@ -64,11 +64,11 @@ export default function Home() {
           <div className="flex items-center justify-center gap-4 mb-6 flex-wrap">
             <Flag className="text-rr-gold animate-bounce" size={28} />
             <div className="text-center">
-              <p className="font-heading text-3xl sm:text-4xl text-rr-white tracking-wide drop-shadow-xl" style={{textShadow: '0 3px 10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(255, 255, 255, 0.4)'}}>
+              <p className="font-heading text-3xl sm:text-4xl text-rr-gold font-bold tracking-wide" style={{textShadow: '0 0 30px rgba(212, 175, 55, 0.9), 0 4px 12px rgba(0, 0, 0, 1)'}}>
                 13-YEAR-OLD <span className="text-rr-neon-green animate-pulse" style={{textShadow: '0 0 25px rgba(0, 255, 65, 0.9), 0 3px 10px rgba(0, 0, 0, 0.95)'}}>SPEED DEMON</span>
               </p>
-              <p className="font-heading text-lg sm:text-xl text-rr-white mt-2" style={{textShadow: '0 2px 8px rgba(0, 0, 0, 0.95)'}}>
-                🎮 <span className="text-rr-electric-blue" style={{textShadow: '0 0 20px rgba(0, 191, 255, 0.7)'}}>iRACING CHAMPION IN THE MAKING</span> 🎮
+              <p className="font-heading text-lg sm:text-xl text-rr-gold font-bold mt-2" style={{textShadow: '0 0 25px rgba(212, 175, 55, 0.8), 0 3px 10px rgba(0, 0, 0, 1)'}}>
+                🎮 iRACING CHAMPION IN THE MAKING 🎮
               </p>
             </div>
             <Flag className="text-rr-gold animate-bounce" size={28} />
