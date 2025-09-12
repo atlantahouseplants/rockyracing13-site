@@ -47,7 +47,7 @@ export default function Home() {
         
         <div className="relative z-40 text-center max-w-7xl mx-auto px-4">
           {/* Logo with Epic Glow */}
-          <div className="mb-6 animate-pulse">
+          <div className="mb-6">
             <img 
               src="/rocky-racing-logo-bw.png" 
               alt="Rocky Racing" 
