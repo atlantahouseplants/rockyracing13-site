@@ -170,7 +170,17 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             {missionTiles.map((tile, index) => (
               <div key={index} className="bg-gray-900/50 rounded-lg p-6 text-center border border-gray-800 hover:border-rr-gold/30 transition-colors duration-200">
-                <tile.icon size={48} className={`${tile.color} mx-auto mb-4`} />
+                {tile.title === "Community" ? (
+                  <div className="w-12 h-12 mx-auto mb-4">
+                    <img 
+                      src="/rocky-gecko.jpg" 
+                      alt="Rocky the Gecko" 
+                      className="w-12 h-12 rounded-full object-cover border-2 border-green-400 shadow-md mx-auto"
+                    />
+                  </div>
+                ) : (
+                  <tile.icon size={48} className={`${tile.color} mx-auto mb-4`} />
+                )}
                 <h3 className="font-heading text-xl text-rr-white mb-3">{tile.title}</h3>
                 <p className="text-gray-400">{tile.description}</p>
               </div>

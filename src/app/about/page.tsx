@@ -120,8 +120,12 @@ export default function About() {
       <section className="py-16 bg-rr-black">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-gradient-to-r from-green-900/20 to-rr-black/20 rounded-lg p-8 border border-green-700/30">
-            <div className="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-white text-2xl">🦎</span>
+            <div className="w-32 h-32 mx-auto mb-6">
+              <img 
+                src="/rocky-gecko.jpg" 
+                alt="Rocky the Gecko - Team Mascot" 
+                className="w-32 h-32 rounded-full object-cover border-4 border-green-500 shadow-lg mx-auto"
+              />
             </div>
             <h2 className="font-heading text-3xl text-rr-gold mb-4">Meet Rocky</h2>
             <p className="text-gray-300 max-w-2xl mx-auto">

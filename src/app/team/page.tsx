@@ -113,8 +113,12 @@ export default function Team() {
             </div>
             
             <div className="bg-gray-900/50 rounded-lg p-6 border border-gray-800">
-              <div className="w-16 h-16 bg-green-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-green-400 text-2xl">🦎</span>
+              <div className="w-16 h-16 mx-auto mb-4">
+                <img 
+                  src="/rocky-gecko.jpg" 
+                  alt="Rocky the Gecko - Team Mascot" 
+                  className="w-16 h-16 rounded-full object-cover border-2 border-green-500 shadow-md"
+                />
               </div>
               <h3 className="font-heading text-xl text-rr-white mb-3">Rocky (Mascot)</h3>
               <p className="text-gray-400 text-sm">
