@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
-import { Users, Heart, Trophy, Target } from 'lucide-react'
+import { Users, Heart, Trophy, Target, Flag, Play } from 'lucide-react'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'About Rocky Racing - Our Story & Mission',
@@ -11,104 +12,206 @@ export default function About() {
     {
       icon: Trophy,
       title: 'Sportsmanship',
-      description: 'Racing clean and fair, respecting competitors and the spirit of motorsports.'
+      description: 'Racing clean and fair, respecting competitors and the spirit of motorsports.',
+      color: 'gold'
     },
     {
       icon: Heart,
-      title: 'Transparency',
-      description: 'Open about our journey, finances, and challenges. Building trust with our community.'
+      title: 'Transparency', 
+      description: 'Open about our journey, finances, and challenges. Building trust with our community.',
+      color: 'racing-red'
     },
     {
       icon: Users,
       title: 'Inclusion',
-      description: 'Welcoming everyone to our community regardless of experience or background.'
+      description: 'Welcoming everyone to our community regardless of experience or background.',
+      color: 'electric-blue'
     },
     {
       icon: Target,
       title: 'Growth',
-      description: 'Constantly learning, improving, and sharing knowledge with others.'
+      description: 'Constantly learning, improving, and sharing knowledge with others.',
+      color: 'neon-green'
     }
   ]
 
-  const photos = [
-    { src: '/photos/max-racing-1.jpg', alt: 'Max at his racing setup', caption: 'Max focused during an IMSA race' },
-    { src: '/photos/father-son-1.jpg', alt: 'Father and son working on setup', caption: 'Working together on car setups' },
-    { src: '/photos/rocky-mascot.jpg', alt: 'Rocky the gecko mascot', caption: 'Rocky, our gecko mascot and good luck charm' },
-    { src: '/photos/podium-celebration.jpg', alt: 'Celebrating first podium', caption: 'Celebrating our first podium finish' },
-  ]
-
   return (
-    <div className="min-h-screen bg-rr-black text-rr-white">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-rr-black via-gray-900 to-rr-black py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            {/* Rocky Racing Logo */}
-            <div className="mb-6">
-              <img 
-                src="/rocky-racing-logo-bw.png" 
-                alt="Rocky Racing Logo" 
-                className="mx-auto h-16 sm:h-20 w-auto filter brightness-0 invert opacity-80"
-              />
+    <div className="min-h-screen bg-rr-black overflow-hidden">
+      {/* EPIC ABOUT HERO SECTION */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Hero Background Video */}
+        <div className="absolute inset-0 z-0">
+          <video 
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            poster="/max-profile.jpg"
+          >
+            <source src="/aboutpageheroimage.mp4" type="video/mp4" />
+            {/* Fallback to image if video fails */}
+            <img 
+              src="/max-profile.jpg" 
+              alt="Max Racing" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </video>
+          
+          {/* Enhanced dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-rr-black/85 via-rr-black/75 to-rr-black/85"></div>
+          
+          {/* Racing effects overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-rr-gold/10 to-transparent"></div>
+        </div>
+
+        {/* Animated Speed Lines */}
+        <div className="absolute inset-0 pointer-events-none z-20">
+          <div className="speed-line"></div>
+          <div className="speed-line"></div>
+          <div className="speed-line"></div>
+        </div>
+        
+        {/* Checkered Flag Borders */}
+        <div className="absolute top-0 left-0 w-full h-3 checkered-bg opacity-90 z-30"></div>
+        <div className="absolute bottom-0 left-0 w-full h-3 checkered-bg opacity-90 z-30"></div>
+        
+        <div className="relative z-40 text-center max-w-7xl mx-auto px-4">
+          {/* EPIC Title */}
+          <h1 className="font-heading text-6xl sm:text-7xl lg:text-8xl text-rr-gold mb-4 tracking-wider font-black" style={{textShadow: '0 0 40px rgba(212, 175, 55, 1), 0 0 80px rgba(212, 175, 55, 0.8), 0 6px 15px rgba(0, 0, 0, 1)'}}>
+            OUR STORY
+          </h1>
+          
+          {/* Dynamic Subtitle */}
+          <div className="flex items-center justify-center gap-4 mb-8 flex-wrap">
+            <Flag className="text-rr-gold animate-bounce" size={28} />
+            <div className="text-center">
+              <p className="font-heading text-2xl sm:text-3xl text-rr-gold font-black tracking-wide" style={{textShadow: '0 0 35px rgba(212, 175, 55, 1), 0 0 70px rgba(212, 175, 55, 0.8), 0 5px 12px rgba(0, 0, 0, 1)'}}>
+                FATHER-SON <span className="text-rr-neon-green font-black" style={{textShadow: '0 0 30px rgba(0, 255, 65, 1), 0 0 60px rgba(0, 255, 65, 0.8), 0 5px 12px rgba(0, 0, 0, 1)'}}>RACING DYNASTY</span>
+              </p>
+              <p className="font-heading text-lg sm:text-xl text-rr-white font-bold mt-2" style={{textShadow: '0 2px 8px rgba(0, 0, 0, 0.95)'}}>
+                🏁 FROM SIM TO REALITY • BUILDING LEGENDS 🏁
+              </p>
             </div>
-            <h1 className="font-heading text-5xl lg:text-6xl text-rr-white mb-6">
-              Our Story
-            </h1>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              From a shared passion for racing to building a community around clean, competitive sim racing
+            <Flag className="text-rr-gold animate-bounce" size={28} />
+          </div>
+          
+          {/* Epic Call to Action */}
+          <div className="bg-rr-black/85 backdrop-blur-sm rounded-2xl p-6 mb-8 border border-rr-gold/60 shadow-2xl">
+            <p className="text-xl text-rr-white mb-2 font-bold" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>
+              ⚡ THE JOURNEY BEGINS ⚡
             </p>
+            <p className="text-lg text-rr-white" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>
+              13-year-old prodigy • Gecko mascot • 
+              <span className="text-rr-neon-green font-bold animate-pulse" style={{textShadow: '0 0 20px rgba(0, 255, 65, 0.9)'}}> RACING DREAMS! </span>
+            </p>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <Link
+              href="/team"
+              className="inline-flex items-center gap-4 bg-gradient-to-r from-rr-gold to-rr-speed-yellow text-rr-black px-10 py-5 rounded-2xl text-xl font-bold hover:shadow-2xl transform hover:scale-110 transition-all duration-300 neon-glow"
+            >
+              <Users size={28} />
+              <div>
+                <div>MEET THE TEAM</div>
+                <div className="text-sm opacity-80">👨‍👦 FAMILY FIRST</div>
+              </div>
+            </Link>
+            
+            <Link
+              href="/watch"
+              className="inline-flex items-center gap-4 border-3 border-rr-neon-green text-rr-neon-green px-10 py-5 rounded-2xl text-xl font-bold hover:bg-rr-neon-green hover:text-rr-black transition-all duration-300 backdrop-blur-sm bg-rr-black/30"
+            >
+              <Play size={28} />
+              <div>
+                <div>WATCH RACES</div>
+                <div className="text-sm opacity-80">🎥 EPIC CONTENT</div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Origin Story */}
-      <section className="py-16 bg-gray-950">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      {/* RACING ORIGIN STORY */}
+      <section className="py-16 bg-gradient-to-br from-gray-950 to-rr-black relative">
+        <div className="absolute inset-0 opacity-20">
+          <div className="racing-gradient h-full"></div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Story Content */}
             <div>
-              <h2 className="font-heading text-3xl text-rr-gold mb-6">Father-Son Racing Team</h2>
-              <div className="space-y-4 text-gray-200">
-                <p>
-                  Rocky Racing began as a father-son passion project in early 2024. What started as weekend 
-                  racing sessions quickly evolved into something bigger when we realized we could share our 
-                  journey with the racing community.
+              <h2 className="font-heading text-4xl text-rr-gold mb-6" style={{textShadow: '0 0 20px rgba(212, 175, 55, 0.8)'}}>
+                🏎️ RACING DYNASTY BEGINS
+              </h2>
+              <div className="space-y-6 text-gray-100 text-lg">
+                <p className="leading-relaxed">
+                  <span className="text-rr-gold font-bold">Rocky Racing</span> exploded onto the scene in early 2024 as a 
+                  father-son passion project that quickly became something extraordinary. What started as weekend 
+                  racing sessions evolved into a <span className="text-rr-neon-green font-bold">community phenomenon</span>.
                 </p>
-                <p>
-                  At just 13 years old, Max shows incredible dedication to improving his craft. From studying 
-                  telemetry data to perfecting racing lines, he approaches sim racing with the same seriousness 
-                  as professional drivers.
+                <p className="leading-relaxed">
+                  At just <span className="text-rr-speed-yellow font-bold">13 years old</span>, Max approaches sim racing with the intensity 
+                  of a professional driver. From analyzing telemetry data to perfecting racing lines, 
+                  he&apos;s already showing the dedication that builds <span className="text-rr-racing-red font-bold">champions</span>.
                 </p>
-                <p>
-                  As his dad and team manager, I handle the business side while providing guidance and support. 
-                  Together, we&apos;re building something special - a transparent, community-focused racing team 
-                  that values clean competition above all else.
+                <p className="leading-relaxed">
+                  As team manager and dad, I handle the business operations while providing guidance and support. 
+                  Together, we&apos;re building something special - a <span className="text-rr-electric-blue font-bold">transparent, community-focused racing team</span> that 
+                  values clean competition above everything else.
                 </p>
               </div>
+              
+              {/* Racing Stats */}
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                <div className="bg-rr-black/70 backdrop-blur-sm rounded-xl p-4 border border-rr-gold/50">
+                  <div className="text-rr-gold font-bold text-lg">🏆 PODIUM FINISHES</div>
+                  <div className="text-rr-white text-2xl font-black">3+</div>
+                </div>
+                <div className="bg-rr-black/70 backdrop-blur-sm rounded-xl p-4 border border-rr-neon-green/50">
+                  <div className="text-rr-neon-green font-bold text-lg">✅ SAFETY RATING</div>
+                  <div className="text-rr-white text-2xl font-black">A+</div>
+                </div>
+              </div>
             </div>
-            <div className="bg-gradient-to-br from-rr-gold/15 to-rr-black border border-rr-gold/50 rounded-lg p-8 shadow-xl">
+            
+            {/* Max Profile Card - Enhanced */}
+            <div className="bg-gradient-to-br from-rr-gold/20 to-rr-black border-2 border-rr-gold rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
               <div className="text-center">
-                <div className="w-24 h-24 mx-auto mb-4">
+                <div className="w-32 h-32 mx-auto mb-6">
                   <img 
                     src="/max-profile.jpg" 
                     alt="Max - Rocky Racing Driver" 
-                    className="w-24 h-24 rounded-full object-cover border-2 border-rr-gold shadow-lg"
+                    className="w-32 h-32 rounded-full object-cover border-4 border-rr-gold shadow-xl"
                   />
                 </div>
-                <h3 className="font-heading text-xl text-rr-white mb-2">Max, Age 13</h3>
-                <p className="text-gray-300 text-sm mb-4">Driver & Content Creator</p>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
+                <h3 className="font-heading text-2xl text-rr-white mb-2" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)'}}>
+                  MAX - AGE 13
+                </h3>
+                <p className="text-rr-gold font-bold text-lg mb-6">Driver & Content Creator 🎮</p>
+                
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center bg-rr-black/50 rounded-lg p-3">
                     <span className="text-gray-300">iRating:</span>
-                    <span className="text-rr-gold">~2100</span>
+                    <span className="text-rr-gold font-bold">~2100 📈</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-center bg-rr-black/50 rounded-lg p-3">
                     <span className="text-gray-300">Favorite Car:</span>
-                    <span className="text-rr-white">Porsche 992 GT3</span>
+                    <span className="text-rr-white font-bold">Porsche GT3 🏎️</span>
                   </div>
-                  <div className="flex justify-between">
+                  <div className="flex justify-between items-center bg-rr-black/50 rounded-lg p-3">
                     <span className="text-gray-300">Favorite Track:</span>
-                    <span className="text-rr-white">Spa-Francorchamps</span>
+                    <span className="text-rr-white font-bold">Spa-Francorchamps 🇧🇪</span>
                   </div>
+                </div>
+                
+                <div className="mt-6 flex justify-center gap-2 flex-wrap">
+                  <span className="bg-rr-neon-green/20 text-rr-neon-green px-3 py-1 rounded-full text-sm font-bold">CLEAN RACER</span>
+                  <span className="bg-rr-electric-blue/20 text-rr-electric-blue px-3 py-1 rounded-full text-sm font-bold">CONTENT CREATOR</span>
+                  <span className="bg-rr-racing-red/20 text-rr-racing-red px-3 py-1 rounded-full text-sm font-bold">SPEED DEMON</span>
                 </div>
               </div>
             </div>
@@ -116,87 +219,88 @@ export default function About() {
         </div>
       </section>
 
-      {/* Rocky the Mascot */}
-      <section className="py-16 bg-rr-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-gradient-to-r from-green-900/20 to-rr-black/20 rounded-lg p-8 border border-green-700/30">
-            <div className="w-32 h-32 mx-auto mb-6">
-              <img 
-                src="/rocky-gecko.jpg" 
-                alt="Rocky the Gecko - Team Mascot" 
-                className="w-32 h-32 rounded-full object-cover border-4 border-green-500 shadow-lg mx-auto"
-              />
+      {/* ROCKY THE MASCOT - Enhanced */}
+      <section className="py-16 bg-rr-black relative">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="font-heading text-5xl text-rr-white mb-4">
+            🦎 MEET ROCKY 🦎
+          </h2>
+          <p className="text-xl text-rr-gold mb-8 font-bold">
+            OUR GECKO MASCOT & GOOD LUCK CHARM!
+          </p>
+          
+          <div className="bg-gradient-to-br from-rr-neon-green/15 to-rr-black border-2 border-rr-neon-green rounded-2xl p-8 shadow-2xl">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="w-48 h-48 mx-auto">
+                <img 
+                  src="/rocky-gecko.jpg" 
+                  alt="Rocky the Gecko - Team Mascot" 
+                  className="w-48 h-48 rounded-full object-cover border-4 border-rr-neon-green shadow-2xl mx-auto animate-spin slow-spin"
+                  style={{animation: 'spin 10s linear infinite'}}
+                />
+              </div>
+              <div className="text-left">
+                <p className="text-gray-100 text-lg leading-relaxed mb-4">
+                  Every legendary racing team needs an epic mascot, and ours is <span className="text-rr-neon-green font-bold">Rocky the Gecko</span>! 
+                  This little speed demon has been our good luck charm since day one.
+                </p>
+                <p className="text-gray-100 text-lg leading-relaxed mb-6">
+                  Whether he&apos;s perched on Max&apos;s monitor during intense races or starring in our content, 
+                  Rocky represents the <span className="text-rr-gold font-bold">fun, approachable side</span> of our serious racing efforts. 
+                  Those distinctive gold scales even inspired our team colors!
+                </p>
+                
+                <div className="bg-rr-black/60 rounded-xl p-4 border border-rr-neon-green/50">
+                  <div className="text-rr-neon-green font-bold">🎯 ROCKY&apos;S RACING RECORD:</div>
+                  <div className="text-rr-white mt-2">✅ Present for every podium finish</div>
+                  <div className="text-rr-white">✅ 0 incidents caused (clean racer!)</div>
+                  <div className="text-rr-white">✅ 100% good vibes brought</div>
+                </div>
+              </div>
             </div>
-            <h2 className="font-heading text-3xl text-rr-gold mb-4">Meet Rocky</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              Every great racing team needs a mascot, and ours is Rocky the gecko! This little guy has been 
-              our good luck charm since the beginning. Whether perched on Max&apos;s monitor during races or 
-              featured in our content, Rocky represents the fun, approachable side of our serious racing efforts. 
-              He&apos;s even inspired our team colors - that distinctive gold matches his beautiful scales!
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-16 bg-gray-950">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {/* RACING VALUES - Enhanced */}
+      <section className="py-16 bg-gradient-to-br from-gray-950 via-rr-black to-gray-950 relative">
+        <div className="absolute inset-0 opacity-30">
+          <div className="checkered-bg h-full"></div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="font-heading text-4xl text-rr-white mb-4">Our Values</h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
-              These principles guide everything we do, from how we race to how we interact with our community.
+            <h2 className="font-heading text-5xl text-rr-white mb-4">
+              🏁 OUR RACING CODE 🏁
+            </h2>
+            <p className="text-xl text-rr-gold font-bold">
+              The principles that drive every lap, every race, every victory!
             </p>
           </div>
+          
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <div key={index} className="bg-gray-900/50 rounded-lg p-6 text-center border border-gray-800 hover:border-rr-gold/30 transition-colors duration-200">
-                <value.icon size={48} className="text-rr-gold mx-auto mb-4" />
-                <h3 className="font-heading text-xl text-rr-white mb-3">{value.title}</h3>
-                <p className="text-gray-400 text-sm">{value.description}</p>
+              <div key={index} className={`bg-gradient-to-br from-rr-${value.color}/15 to-rr-black border-2 border-rr-${value.color}/60 rounded-xl p-6 text-center shadow-xl transform hover:scale-105 hover:rotate-1 transition-all duration-300`}>
+                <value.icon size={48} className={`text-rr-${value.color} mx-auto mb-4`} style={{filter: `drop-shadow(0 0 10px rgba(${value.color === 'gold' ? '212, 175, 55' : value.color === 'racing-red' ? '255, 0, 64' : value.color === 'electric-blue' ? '0, 191, 255' : '0, 255, 65'}, 0.6))`}} />
+                <h3 className="font-heading text-xl text-rr-white mb-3 font-bold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>{value.title}</h3>
+                <p className="text-gray-200 text-sm leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Photo Grid */}
-      <section className="py-16 bg-rr-black">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="font-heading text-3xl text-rr-white mb-4">Behind the Scenes</h2>
-            <p className="text-gray-300">
-              A glimpse into our racing life and the moments that make this journey special.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {photos.map((photo, index) => (
-              <div key={index} className="bg-gray-900 rounded-lg overflow-hidden border border-gray-800 hover:border-rr-gold/30 transition-colors duration-200">
-                <div className="aspect-square bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center">
-                  <div className="text-center p-4">
-                    <div className="w-16 h-16 bg-rr-gold/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                      <span className="text-rr-gold text-2xl">📸</span>
-                    </div>
-                    <p className="text-gray-400 text-sm">Photo placeholder</p>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <p className="text-rr-white text-sm font-medium">{photo.caption}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Parent Supervision Note */}
-      <section className="py-12 bg-gray-900/50 border-t border-gray-800">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-blue-900/20 border border-blue-700/30 rounded-lg p-6">
-            <h3 className="font-heading text-lg text-blue-400 mb-2">Parent-Supervised Communications</h3>
-            <p className="text-gray-300 text-sm">
+      {/* PARENT SUPERVISION - Enhanced */}
+      <section className="py-12 bg-gradient-to-r from-blue-950/50 to-rr-black border-t-2 border-blue-500/30">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="bg-gradient-to-br from-blue-900/30 to-rr-black border-2 border-blue-500/50 rounded-xl p-6 shadow-xl">
+            <h3 className="font-heading text-xl text-blue-400 mb-3 font-bold" style={{textShadow: '0 0 10px rgba(59, 130, 246, 0.6)'}}>
+              🛡️ PARENT-SUPERVISED OPERATIONS 🛡️
+            </h3>
+            <p className="text-gray-200 leading-relaxed">
               All communications, content creation, and business activities are supervised and managed by Max&apos;s 
-              parents. We maintain a safe, educational environment while pursuing our racing goals. For business 
-              inquiries or partnerships, please contact max@rockyracing13.com.
+              parents. We maintain a <span className="text-blue-400 font-bold">safe, educational environment</span> while pursuing our racing goals. 
+              For business inquiries or partnerships, contact <span className="text-rr-gold font-bold">max@rockyracing13.com</span>.
             </p>
           </div>
         </div>
