@@ -1,0 +1,10 @@
+[
+  {
+    "id": "1",
+    "name": "Example Sponsor",
+    "logo": "/logos/sponsors/example-sponsor.png",
+    "website": "https://example.com",
+    "tier": "gold",
+    "description": "Supporting Rocky Racing's journey to the top"
+  }
+]
