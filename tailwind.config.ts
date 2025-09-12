@@ -13,6 +13,11 @@ const config: Config = {
           black: '#000000',
           gold: '#D4AF37',
           white: '#FFFFFF',
+          'neon-green': '#00FF41',
+          'electric-blue': '#00BFFF',
+          'racing-red': '#FF0040',
+          'cyber-purple': '#9D00FF',
+          'speed-yellow': '#FFFF00',
         },
       },
       fontFamily: {
