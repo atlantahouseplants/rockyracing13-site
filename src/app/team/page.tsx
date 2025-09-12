@@ -292,12 +292,8 @@ export default function Team() {
       </section>
 
       {/* MEDIA KIT & CONTACT */}
-      <section className="py-16 bg-gradient-to-br from-gray-950 via-rr-black to-gray-950 relative">
-        <div className="absolute inset-0 opacity-30">
-          <div className="checkered-bg h-full"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+      <section className="py-16 bg-gradient-to-br from-gray-950 via-rr-black to-gray-950">
+        <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="font-heading text-5xl text-rr-white mb-4">
             📰 MEDIA & PRESS 📰
           </h2>
