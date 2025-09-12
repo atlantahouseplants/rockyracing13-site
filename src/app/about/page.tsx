@@ -263,7 +263,7 @@ export default function About() {
       </section>
 
       {/* RACING VALUES - Enhanced */}
-      <section className="py-16 bg-gradient-to-br from-gray-950 via-rr-black to-gray-950">
+      <section className="py-16 bg-gradient-to-br from-gray-800 via-gray-700 to-gray-800">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="font-heading text-5xl text-rr-white mb-4">
