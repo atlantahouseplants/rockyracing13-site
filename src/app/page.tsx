@@ -64,10 +64,10 @@ export default function Home() {
           <div className="flex items-center justify-center gap-4 mb-6 flex-wrap">
             <Flag className="text-rr-gold animate-bounce" size={28} />
             <div className="text-center">
-              <p className="font-heading text-3xl sm:text-4xl text-rr-gold font-bold tracking-wide" style={{textShadow: '0 0 30px rgba(212, 175, 55, 0.9), 0 4px 12px rgba(0, 0, 0, 1)'}}>
-                13-YEAR-OLD <span className="text-rr-neon-green animate-pulse" style={{textShadow: '0 0 25px rgba(0, 255, 65, 0.9), 0 3px 10px rgba(0, 0, 0, 0.95)'}}>SPEED DEMON</span>
+              <p className="font-heading text-3xl sm:text-4xl text-rr-gold font-black tracking-wide" style={{textShadow: '0 0 40px rgba(212, 175, 55, 1), 0 0 80px rgba(212, 175, 55, 0.8), 0 6px 15px rgba(0, 0, 0, 1)'}}>
+                13-YEAR-OLD <span className="text-rr-neon-green font-black animate-pulse" style={{textShadow: '0 0 35px rgba(0, 255, 65, 1), 0 0 70px rgba(0, 255, 65, 0.8), 0 6px 15px rgba(0, 0, 0, 1)'}}>SPEED DEMON</span>
               </p>
-              <p className="font-heading text-lg sm:text-xl text-rr-gold font-bold mt-2" style={{textShadow: '0 0 25px rgba(212, 175, 55, 0.8), 0 3px 10px rgba(0, 0, 0, 1)'}}>
+              <p className="font-heading text-lg sm:text-xl text-rr-gold font-black mt-2" style={{textShadow: '0 0 35px rgba(212, 175, 55, 1), 0 0 70px rgba(212, 175, 55, 0.8), 0 5px 12px rgba(0, 0, 0, 1)'}}>
                 🎮 iRACING CHAMPION IN THE MAKING 🎮
               </p>
             </div>

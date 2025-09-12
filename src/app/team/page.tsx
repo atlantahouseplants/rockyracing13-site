@@ -51,29 +51,29 @@ export default function Team() {
               </div>
               
               <div className="space-y-6">
-                <div className="bg-gray-800/50 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-rr-gold/15 to-rr-black border border-rr-gold/50 rounded-xl p-4 shadow-xl">
                   <h3 className="font-heading text-lg text-rr-gold mb-3">Racing Stats</h3>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-400">iRating:</span>
+                      <span className="text-gray-300">iRating:</span>
                       <span className="text-rr-white">~2100</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Favorite Car:</span>
+                      <span className="text-gray-300">Favorite Car:</span>
                       <span className="text-rr-white">Porsche 992 GT3 Cup</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Favorite Track:</span>
+                      <span className="text-gray-300">Favorite Track:</span>
                       <span className="text-rr-white">Spa-Francorchamps</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-400">Racing Since:</span>
+                      <span className="text-gray-300">Racing Since:</span>
                       <span className="text-rr-white">2024</span>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-gray-800/50 rounded-lg p-4">
+                <div className="bg-gradient-to-br from-rr-neon-green/10 to-rr-black border border-rr-neon-green/50 rounded-xl p-4 shadow-xl">
                   <h3 className="font-heading text-lg text-rr-gold mb-3">Recent Achievements</h3>
                   <ul className="space-y-2 text-sm text-gray-300">
                     <li className="flex items-center gap-2">
@@ -99,20 +99,20 @@ export default function Team() {
         <div className="text-center mb-12">
           <h2 className="font-heading text-3xl text-rr-white mb-6">Team Support</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-gray-900/50 rounded-lg p-6 border border-gray-800">
+            <div className="bg-gradient-to-br from-rr-electric-blue/10 to-rr-black border border-rr-electric-blue/50 rounded-xl p-6 shadow-xl">
               <div className="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </div>
               <h3 className="font-heading text-xl text-rr-white mb-3">Dad & Team Manager</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-300 text-sm">
                 Handles business operations, content strategy, and provides guidance. 
                 All communications are parent-supervised for safety and professionalism.
               </p>
             </div>
             
-            <div className="bg-gray-900/50 rounded-lg p-6 border border-gray-800">
+            <div className="bg-gradient-to-br from-rr-neon-green/10 to-rr-black border border-rr-neon-green/50 rounded-xl p-6 shadow-xl">
               <div className="w-16 h-16 mx-auto mb-4">
                 <img 
                   src="/rocky-gecko.jpg" 
@@ -121,7 +121,7 @@ export default function Team() {
                 />
               </div>
               <h3 className="font-heading text-xl text-rr-white mb-3">Rocky (Mascot)</h3>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-300 text-sm">
                 Our gecko mascot and good luck charm. Rocky has been with us since the beginning 
                 and represents the fun, approachable side of our racing efforts.
               </p>
@@ -130,7 +130,7 @@ export default function Team() {
         </div>
 
         {/* Media Kit & Contact */}
-        <div className="bg-gray-900/30 rounded-lg p-8 border border-gray-800 text-center">
+        <div className="bg-gradient-to-br from-rr-gold/10 to-rr-black border border-rr-gold/50 rounded-xl p-8 shadow-xl text-center">
           <h2 className="font-heading text-2xl text-rr-white mb-4">Media Kit & Press</h2>
           <p className="text-gray-300 mb-6">
             Need team information, photos, or want to feature Rocky Racing? 
