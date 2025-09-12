@@ -46,14 +46,6 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 w-full h-3 checkered-bg opacity-90 z-30"></div>
         
         <div className="relative z-40 text-center max-w-7xl mx-auto px-4">
-          {/* Logo with Epic Glow */}
-          <div className="mb-6">
-            <img 
-              src="/rocky-racing-logo-bw.png" 
-              alt="Rocky Racing" 
-              className="mx-auto h-28 lg:h-40 w-auto filter brightness-0 invert neon-glow drop-shadow-2xl"
-            />
-          </div>
           
           {/* MASSIVE Title - Crystal Clear Gold */}
           <h1 className="font-heading text-7xl sm:text-8xl lg:text-9xl text-rr-gold mb-4 tracking-wider font-black" style={{textShadow: '0 0 40px rgba(212, 175, 55, 1), 0 0 80px rgba(212, 175, 55, 0.8), 0 6px 15px rgba(0, 0, 0, 1)'}}>
