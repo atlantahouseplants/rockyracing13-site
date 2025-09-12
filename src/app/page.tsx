@@ -1,13 +1,39 @@
 import Link from 'next/link'
-import { Play, Zap, Trophy, Target, Youtube, Gamepad2, Flag, Users, TrendingUp } from 'lucide-react'
+import { Play, Zap, Trophy, Youtube, Gamepad2, Flag } from 'lucide-react'
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-rr-black overflow-hidden">
-      {/* RACING HERO SECTION */}
-      <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-rr-black via-gray-900 to-rr-black">
+      {/* EPIC RACING HERO SECTION */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Hero Background Video/Image */}
+        <div className="absolute inset-0 z-0">
+          <video 
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            poster="/hero-image-1.png"
+          >
+            <source src="/hero-racing-video.mp4" type="video/mp4" />
+            {/* Fallback to image if video fails */}
+            <img 
+              src="/hero-image-1.png" 
+              alt="Racing Action" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </video>
+          
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-rr-black/70 via-rr-black/50 to-rr-black/70"></div>
+          
+          {/* Racing effects overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-rr-gold/10 to-transparent"></div>
+        </div>
+
         {/* Animated Speed Lines */}
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none z-20">
           <div className="speed-line"></div>
           <div className="speed-line"></div>
           <div className="speed-line"></div>
@@ -15,67 +41,103 @@ export default function Home() {
           <div className="speed-line"></div>
         </div>
         
-        {/* Checkered Flag Pattern */}
-        <div className="absolute top-0 left-0 w-full h-2 checkered-bg opacity-60"></div>
-        <div className="absolute bottom-0 left-0 w-full h-2 checkered-bg opacity-60"></div>
+        {/* Checkered Flag Borders */}
+        <div className="absolute top-0 left-0 w-full h-3 checkered-bg opacity-90 z-30"></div>
+        <div className="absolute bottom-0 left-0 w-full h-3 checkered-bg opacity-90 z-30"></div>
         
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-4">
-          {/* Logo with Glow */}
-          <div className="mb-8 animate-pulse">
+        <div className="relative z-40 text-center max-w-7xl mx-auto px-4">
+          {/* Logo with Epic Glow */}
+          <div className="mb-6 animate-pulse">
             <img 
               src="/rocky-racing-logo-bw.png" 
               alt="Rocky Racing" 
-              className="mx-auto h-32 lg:h-48 w-auto filter brightness-0 invert neon-glow"
+              className="mx-auto h-28 lg:h-40 w-auto filter brightness-0 invert neon-glow drop-shadow-2xl"
             />
           </div>
           
-          {/* Main Title */}
-          <h1 className="font-heading text-6xl sm:text-7xl lg:text-8xl text-transparent bg-clip-text bg-gradient-to-r from-rr-gold via-rr-speed-yellow to-rr-gold mb-4 tracking-wider">
+          {/* MASSIVE Title */}
+          <h1 className="font-heading text-7xl sm:text-8xl lg:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-rr-gold via-rr-speed-yellow to-rr-gold mb-4 tracking-wider drop-shadow-2xl">
             ROCKY RACING
           </h1>
           
-          {/* Subtitle with Racing Flair */}
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <Flag className="text-rr-gold animate-bounce" size={24} />
-            <p className="font-heading text-2xl sm:text-3xl text-rr-white tracking-wide">
-              13-YEAR-OLD <span className="text-rr-neon-green">SPEED DEMON</span>
-            </p>
-            <Flag className="text-rr-gold animate-bounce" size={24} />
+          {/* Dynamic Subtitle */}
+          <div className="flex items-center justify-center gap-4 mb-6 flex-wrap">
+            <Flag className="text-rr-gold animate-bounce" size={28} />
+            <div className="text-center">
+              <p className="font-heading text-3xl sm:text-4xl text-rr-white tracking-wide drop-shadow-xl">
+                13-YEAR-OLD <span className="text-rr-neon-green animate-pulse">SPEED DEMON</span>
+              </p>
+              <p className="font-heading text-lg sm:text-xl text-rr-electric-blue mt-2">
+                🎮 iRACING CHAMPION IN THE MAKING 🎮
+              </p>
+            </div>
+            <Flag className="text-rr-gold animate-bounce" size={28} />
           </div>
           
-          <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            🏁 Crushing it on iRacing • Building a Racing Empire • 
-            <span className="text-rr-electric-blue font-bold"> SUBSCRIBE FOR EPIC CONTENT! </span>
-          </p>
+          {/* Epic Call to Action */}
+          <div className="bg-rr-black/60 backdrop-blur-sm rounded-2xl p-6 mb-8 border border-rr-gold/30">
+            <p className="text-2xl text-rr-white mb-2 font-bold">
+              🔥 CRUSHING THE COMPETITION 🔥
+            </p>
+            <p className="text-lg text-gray-300 mb-4">
+              Epic iRacing content • Race highlights • Setup guides • 
+              <span className="text-rr-electric-blue font-bold animate-pulse"> JOIN THE CREW! </span>
+            </p>
+          </div>
           
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          {/* CTA Buttons - Bigger and Better */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <a
               href="https://youtube.com/@rockyracing13"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-xl text-lg font-bold hover:from-red-500 hover:to-red-600 transform hover:scale-105 transition-all duration-300 shadow-2xl"
+              className="group relative inline-flex items-center gap-4 bg-gradient-to-r from-red-600 to-red-700 text-white px-12 py-5 rounded-2xl text-2xl font-bold hover:from-red-500 hover:to-red-600 transform hover:scale-110 transition-all duration-300 shadow-2xl"
             >
-              <Youtube size={24} className="animate-pulse" />
-              <span>SUBSCRIBE NOW!</span>
-              <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-700 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-300"></div>
+              <Youtube size={32} className="animate-pulse" />
+              <div className="text-center">
+                <div>SUBSCRIBE NOW!</div>
+                <div className="text-sm opacity-90">🚀 FOR EPIC CONTENT</div>
+              </div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-700 rounded-2xl blur opacity-30 group-hover:opacity-60 transition duration-300"></div>
             </a>
             
             <Link
               href="/watch"
-              className="inline-flex items-center gap-3 bg-gradient-to-r from-rr-gold to-rr-speed-yellow text-rr-black px-8 py-4 rounded-xl text-lg font-bold hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center gap-4 bg-gradient-to-r from-rr-gold to-rr-speed-yellow text-rr-black px-10 py-5 rounded-2xl text-xl font-bold hover:shadow-2xl transform hover:scale-110 transition-all duration-300 neon-glow"
             >
-              <Play size={24} />
-              WATCH RACES
+              <Play size={28} />
+              <div>
+                <div>WATCH RACES</div>
+                <div className="text-sm opacity-80">🏁 LATEST WINS</div>
+              </div>
             </Link>
             
             <Link
               href="/support"
-              className="inline-flex items-center gap-3 border-2 border-rr-neon-green text-rr-neon-green px-8 py-4 rounded-xl text-lg font-bold hover:bg-rr-neon-green hover:text-rr-black transition-all duration-300"
+              className="inline-flex items-center gap-4 border-3 border-rr-neon-green text-rr-neon-green px-10 py-5 rounded-2xl text-xl font-bold hover:bg-rr-neon-green hover:text-rr-black transition-all duration-300 backdrop-blur-sm bg-rr-black/30"
             >
-              <Zap size={24} />
-              SUPPORT
+              <Zap size={28} />
+              <div>
+                <div>SUPPORT MAX</div>
+                <div className="text-sm opacity-80">⚡ NEXT LEVEL SETUP</div>
+              </div>
             </Link>
+          </div>
+
+          {/* Quick Stats Bar */}
+          <div className="mt-12 flex justify-center gap-8 flex-wrap">
+            <div className="bg-rr-black/70 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-gold/30">
+              <div className="text-rr-gold font-bold text-lg">🏆 LATEST PODIUM</div>
+              <div className="text-white text-sm">P3 at Road America</div>
+            </div>
+            <div className="bg-rr-black/70 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-neon-green/30">
+              <div className="text-rr-neon-green font-bold text-lg">✅ CLEAN RACER</div>
+              <div className="text-white text-sm">0x Incidents</div>
+            </div>
+            <div className="bg-rr-black/70 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-electric-blue/30">
+              <div className="text-rr-electric-blue font-bold text-lg">📺 CONTENT CREATOR</div>
+              <div className="text-white text-sm">@rockyracing13</div>
+            </div>
           </div>
         </div>
       </section>
