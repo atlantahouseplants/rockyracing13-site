@@ -79,8 +79,12 @@ export default function About() {
             </div>
             <div className="bg-gradient-to-br from-rr-gold/10 to-rr-black border border-rr-gold/30 rounded-lg p-8">
               <div className="text-center">
-                <div className="w-24 h-24 bg-rr-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-rr-black font-heading text-2xl">MAX</span>
+                <div className="w-24 h-24 mx-auto mb-4">
+                  <img 
+                    src="/max-profile.jpg" 
+                    alt="Max - Rocky Racing Driver" 
+                    className="w-24 h-24 rounded-full object-cover border-2 border-rr-gold shadow-lg"
+                  />
                 </div>
                 <h3 className="font-heading text-xl text-rr-white mb-2">Max, Age 13</h3>
                 <p className="text-gray-400 text-sm mb-4">Driver & Content Creator</p>
