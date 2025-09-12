@@ -240,21 +240,21 @@ export default function About() {
                 />
               </div>
               <div className="text-left">
-                <p className="text-gray-100 text-lg leading-relaxed mb-4">
-                  Every legendary racing team needs an epic mascot, and ours is <span className="text-rr-neon-green font-bold">Rocky the Gecko</span>! 
+                <p className="text-rr-white text-lg leading-relaxed mb-4" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>
+                  Every legendary racing team needs an epic mascot, and ours is <span className="text-rr-neon-green font-bold" style={{textShadow: '0 0 20px rgba(0, 255, 65, 0.8)'}}>Rocky the Gecko</span>! 
                   This little speed demon has been our good luck charm since day one.
                 </p>
-                <p className="text-gray-100 text-lg leading-relaxed mb-6">
+                <p className="text-rr-white text-lg leading-relaxed mb-6" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>
                   Whether he&apos;s perched on Max&apos;s monitor during intense races or starring in our content, 
-                  Rocky represents the <span className="text-rr-gold font-bold">fun, approachable side</span> of our serious racing efforts. 
+                  Rocky represents the <span className="text-rr-gold font-bold" style={{textShadow: '0 0 20px rgba(212, 175, 55, 0.8)'}}>fun, approachable side</span> of our serious racing efforts. 
                   Those distinctive gold scales even inspired our team colors!
                 </p>
                 
-                <div className="bg-rr-black/60 rounded-xl p-4 border border-rr-neon-green/50">
-                  <div className="text-rr-neon-green font-bold">🎯 ROCKY&apos;S RACING RECORD:</div>
-                  <div className="text-rr-white mt-2">✅ Present for every podium finish</div>
-                  <div className="text-rr-white">✅ 0 incidents caused (clean racer!)</div>
-                  <div className="text-rr-white">✅ 100% good vibes brought</div>
+                <div className="bg-rr-black/80 rounded-xl p-4 border-2 border-rr-neon-green/70 shadow-xl">
+                  <div className="text-rr-neon-green font-bold text-lg" style={{textShadow: '0 0 15px rgba(0, 255, 65, 0.8)'}}>🎯 ROCKY&apos;S RACING RECORD:</div>
+                  <div className="text-rr-white mt-2 font-semibold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>✅ Present for every podium finish</div>
+                  <div className="text-rr-white font-semibold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>✅ 0 incidents caused (clean racer!)</div>
+                  <div className="text-rr-white font-semibold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>✅ 100% good vibes brought</div>
                 </div>
               </div>
             </div>
@@ -279,13 +279,50 @@ export default function About() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <div key={index} className={`bg-gradient-to-br from-rr-${value.color}/15 to-rr-black border-2 border-rr-${value.color}/60 rounded-xl p-6 text-center shadow-xl transform hover:scale-105 hover:rotate-1 transition-all duration-300`}>
-                <value.icon size={48} className={`text-rr-${value.color} mx-auto mb-4`} style={{filter: `drop-shadow(0 0 10px rgba(${value.color === 'gold' ? '212, 175, 55' : value.color === 'racing-red' ? '255, 0, 64' : value.color === 'electric-blue' ? '0, 191, 255' : '0, 255, 65'}, 0.6))`}} />
-                <h3 className="font-heading text-xl text-rr-white mb-3 font-bold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>{value.title}</h3>
-                <p className="text-gray-200 text-sm leading-relaxed">{value.description}</p>
-              </div>
-            ))}
+            {values.map((value, index) => {
+              const getColorClasses = (color: string) => {
+                switch(color) {
+                  case 'gold': return {
+                    bg: 'from-rr-gold/20 to-rr-black',
+                    border: 'border-rr-gold/70',
+                    icon: 'text-rr-gold',
+                    shadow: '0 0 15px rgba(212, 175, 55, 0.8)'
+                  }
+                  case 'racing-red': return {
+                    bg: 'from-rr-racing-red/20 to-rr-black', 
+                    border: 'border-rr-racing-red/70',
+                    icon: 'text-rr-racing-red',
+                    shadow: '0 0 15px rgba(255, 0, 64, 0.8)'
+                  }
+                  case 'electric-blue': return {
+                    bg: 'from-rr-electric-blue/20 to-rr-black',
+                    border: 'border-rr-electric-blue/70', 
+                    icon: 'text-rr-electric-blue',
+                    shadow: '0 0 15px rgba(0, 191, 255, 0.8)'
+                  }
+                  case 'neon-green': return {
+                    bg: 'from-rr-neon-green/20 to-rr-black',
+                    border: 'border-rr-neon-green/70',
+                    icon: 'text-rr-neon-green', 
+                    shadow: '0 0 15px rgba(0, 255, 65, 0.8)'
+                  }
+                  default: return {
+                    bg: 'from-rr-gold/20 to-rr-black',
+                    border: 'border-rr-gold/70',
+                    icon: 'text-rr-gold',
+                    shadow: '0 0 15px rgba(212, 175, 55, 0.8)'
+                  }
+                }
+              }
+              const colors = getColorClasses(value.color)
+              return (
+                <div key={index} className={`bg-gradient-to-br ${colors.bg} border-2 ${colors.border} rounded-xl p-6 text-center shadow-xl transform hover:scale-105 hover:rotate-1 transition-all duration-300`}>
+                  <value.icon size={48} className={`${colors.icon} mx-auto mb-4`} style={{filter: `drop-shadow(${colors.shadow})`}} />
+                  <h3 className="font-heading text-xl text-rr-white mb-3 font-bold" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>{value.title}</h3>
+                  <p className="text-rr-white text-sm leading-relaxed" style={{textShadow: '0 1px 4px rgba(0, 0, 0, 0.8)'}}>{value.description}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
