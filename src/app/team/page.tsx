@@ -10,6 +10,14 @@ export default function Team() {
     <div className="min-h-screen bg-rr-black text-rr-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
+          {/* Rocky Racing Logo */}
+          <div className="mb-6">
+            <img 
+              src="/rocky-racing-logo-bw.png" 
+              alt="Rocky Racing Logo" 
+              className="mx-auto h-16 sm:h-20 w-auto filter brightness-0 invert opacity-80"
+            />
+          </div>
           <h1 className="font-heading text-5xl text-rr-white mb-6">Meet Team Rocky Racing</h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             A father-son team building something special in the world of sim racing and motorsports

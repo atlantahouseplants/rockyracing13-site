@@ -43,6 +43,14 @@ export default function About() {
       <section className="relative bg-gradient-to-br from-rr-black via-gray-900 to-rr-black py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
+            {/* Rocky Racing Logo */}
+            <div className="mb-6">
+              <img 
+                src="/rocky-racing-logo-bw.png" 
+                alt="Rocky Racing Logo" 
+                className="mx-auto h-16 sm:h-20 w-auto filter brightness-0 invert opacity-80"
+              />
+            </div>
             <h1 className="font-heading text-5xl lg:text-6xl text-rr-white mb-6">
               Our Story
             </h1>

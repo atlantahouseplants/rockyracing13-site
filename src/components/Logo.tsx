@@ -10,13 +10,12 @@ export default function Logo({ className = "h-8 w-auto", showText = false, textC
   return (
     <>
       <img 
-        className={className}
-        src="/logos/rocky-logo-1.svg" 
+        className={`${className} filter brightness-0 invert`}
+        src="/rocky-racing-logo-bw.png" 
         alt="Rocky Racing"
         onError={(e) => {
-          e.currentTarget.style.display = 'none'
-          const nextElement = e.currentTarget.nextElementSibling as HTMLElement
-          if (nextElement) nextElement.style.display = 'inline'
+          e.currentTarget.src = "/logos/rocky-logo-1.svg"
+          e.currentTarget.className = className
         }}
       />
       <span className={textClass}>

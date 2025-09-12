@@ -38,6 +38,14 @@ export default function Home() {
         <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-10"></div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
+            {/* Rocky Racing Logo */}
+            <div className="mb-8">
+              <img 
+                src="/rocky-racing-logo-bw.png" 
+                alt="Rocky Racing Logo" 
+                className="mx-auto h-24 sm:h-32 lg:h-40 w-auto filter brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
             <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl text-rr-white mb-6">
               Rocky Racing
             </h1>
