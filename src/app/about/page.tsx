@@ -67,7 +67,7 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-heading text-3xl text-rr-gold mb-6">Father-Son Racing Team</h2>
-              <div className="space-y-4 text-gray-300">
+              <div className="space-y-4 text-gray-200">
                 <p>
                   Rocky Racing began as a father-son passion project in early 2024. What started as weekend 
                   racing sessions quickly evolved into something bigger when we realized we could share our 
@@ -85,7 +85,7 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div className="bg-gradient-to-br from-rr-gold/10 to-rr-black border border-rr-gold/30 rounded-lg p-8">
+            <div className="bg-gradient-to-br from-rr-gold/15 to-rr-black border border-rr-gold/50 rounded-lg p-8 shadow-xl">
               <div className="text-center">
                 <div className="w-24 h-24 mx-auto mb-4">
                   <img 
@@ -95,18 +95,18 @@ export default function About() {
                   />
                 </div>
                 <h3 className="font-heading text-xl text-rr-white mb-2">Max, Age 13</h3>
-                <p className="text-gray-400 text-sm mb-4">Driver & Content Creator</p>
+                <p className="text-gray-300 text-sm mb-4">Driver & Content Creator</p>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-400">iRating:</span>
+                    <span className="text-gray-300">iRating:</span>
                     <span className="text-rr-gold">~2100</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-400">Favorite Car:</span>
+                    <span className="text-gray-300">Favorite Car:</span>
                     <span className="text-rr-white">Porsche 992 GT3</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-400">Favorite Track:</span>
+                    <span className="text-gray-300">Favorite Track:</span>
                     <span className="text-rr-white">Spa-Francorchamps</span>
                   </div>
                 </div>

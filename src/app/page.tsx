@@ -25,11 +25,11 @@ export default function Home() {
             />
           </video>
           
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-rr-black/70 via-rr-black/50 to-rr-black/70"></div>
+          {/* Enhanced dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-rr-black/85 via-rr-black/75 to-rr-black/85"></div>
           
           {/* Racing effects overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-rr-gold/10 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-rr-gold/5 to-transparent"></div>
         </div>
 
         {/* Animated Speed Lines */}
@@ -55,8 +55,8 @@ export default function Home() {
             />
           </div>
           
-          {/* MASSIVE Title */}
-          <h1 className="font-heading text-7xl sm:text-8xl lg:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-rr-gold via-rr-speed-yellow to-rr-gold mb-4 tracking-wider drop-shadow-2xl">
+          {/* MASSIVE Title - Enhanced Visibility */}
+          <h1 className="font-heading text-7xl sm:text-8xl lg:text-9xl text-transparent bg-clip-text bg-gradient-to-r from-rr-gold via-rr-speed-yellow to-rr-gold mb-4 tracking-wider drop-shadow-2xl" style={{textShadow: '0 0 30px rgba(212, 175, 55, 0.9), 0 0 60px rgba(212, 175, 55, 0.7), 0 4px 12px rgba(0, 0, 0, 0.95)'}}>
             ROCKY RACING
           </h1>
           
@@ -64,24 +64,24 @@ export default function Home() {
           <div className="flex items-center justify-center gap-4 mb-6 flex-wrap">
             <Flag className="text-rr-gold animate-bounce" size={28} />
             <div className="text-center">
-              <p className="font-heading text-3xl sm:text-4xl text-rr-white tracking-wide drop-shadow-xl">
-                13-YEAR-OLD <span className="text-rr-neon-green animate-pulse">SPEED DEMON</span>
+              <p className="font-heading text-3xl sm:text-4xl text-rr-white tracking-wide drop-shadow-xl" style={{textShadow: '0 3px 10px rgba(0, 0, 0, 0.95), 0 0 25px rgba(255, 255, 255, 0.4)'}}>
+                13-YEAR-OLD <span className="text-rr-neon-green animate-pulse" style={{textShadow: '0 0 25px rgba(0, 255, 65, 0.9), 0 3px 10px rgba(0, 0, 0, 0.95)'}}>SPEED DEMON</span>
               </p>
-              <p className="font-heading text-lg sm:text-xl text-rr-electric-blue mt-2">
-                🎮 iRACING CHAMPION IN THE MAKING 🎮
+              <p className="font-heading text-lg sm:text-xl text-rr-white mt-2" style={{textShadow: '0 2px 8px rgba(0, 0, 0, 0.95)'}}>
+                🎮 <span className="text-rr-electric-blue" style={{textShadow: '0 0 20px rgba(0, 191, 255, 0.7)'}}>iRACING CHAMPION IN THE MAKING</span> 🎮
               </p>
             </div>
             <Flag className="text-rr-gold animate-bounce" size={28} />
           </div>
           
-          {/* Epic Call to Action */}
-          <div className="bg-rr-black/60 backdrop-blur-sm rounded-2xl p-6 mb-8 border border-rr-gold/30">
-            <p className="text-2xl text-rr-white mb-2 font-bold">
+          {/* Epic Call to Action - Enhanced Readability */}
+          <div className="bg-rr-black/85 backdrop-blur-sm rounded-2xl p-6 mb-8 border border-rr-gold/60 shadow-2xl">
+            <p className="text-2xl text-rr-white mb-2 font-bold" style={{textShadow: '0 2px 8px rgba(0, 0, 0, 0.9)'}}>
               🔥 CRUSHING THE COMPETITION 🔥
             </p>
-            <p className="text-lg text-gray-300 mb-4">
+            <p className="text-lg text-rr-white mb-4" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>
               Epic iRacing content • Race highlights • Setup guides • 
-              <span className="text-rr-electric-blue font-bold animate-pulse"> JOIN THE CREW! </span>
+              <span className="text-rr-neon-green font-bold animate-pulse" style={{textShadow: '0 0 20px rgba(0, 255, 65, 0.9)'}}> JOIN THE CREW! </span>
             </p>
           </div>
           
@@ -124,19 +124,19 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Quick Stats Bar */}
+          {/* Quick Stats Bar - Enhanced Visibility */}
           <div className="mt-12 flex justify-center gap-8 flex-wrap">
-            <div className="bg-rr-black/70 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-gold/30">
-              <div className="text-rr-gold font-bold text-lg">🏆 LATEST PODIUM</div>
-              <div className="text-white text-sm">P3 at Road America</div>
+            <div className="bg-rr-black/90 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-gold/70 shadow-xl">
+              <div className="text-rr-gold font-bold text-lg" style={{textShadow: '0 0 15px rgba(212, 175, 55, 0.8)'}}>🏆 LATEST PODIUM</div>
+              <div className="text-rr-white text-sm" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>P3 at Road America</div>
             </div>
-            <div className="bg-rr-black/70 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-neon-green/30">
-              <div className="text-rr-neon-green font-bold text-lg">✅ CLEAN RACER</div>
-              <div className="text-white text-sm">0x Incidents</div>
+            <div className="bg-rr-black/90 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-neon-green/70 shadow-xl">
+              <div className="text-rr-neon-green font-bold text-lg" style={{textShadow: '0 0 15px rgba(0, 255, 65, 0.8)'}}>✅ CLEAN RACER</div>
+              <div className="text-rr-white text-sm" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>0x Incidents</div>
             </div>
-            <div className="bg-rr-black/70 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-electric-blue/30">
-              <div className="text-rr-electric-blue font-bold text-lg">📺 CONTENT CREATOR</div>
-              <div className="text-white text-sm">@rockyracing13</div>
+            <div className="bg-rr-black/90 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-electric-blue/70 shadow-xl">
+              <div className="text-rr-electric-blue font-bold text-lg" style={{textShadow: '0 0 15px rgba(0, 191, 255, 0.8)'}}>📺 CONTENT CREATOR</div>
+              <div className="text-rr-white text-sm" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>@rockyracing13</div>
             </div>
           </div>
         </div>
@@ -201,24 +201,24 @@ export default function Home() {
             
             {/* Racing Stats & Call to Action */}
             <div className="space-y-6">
-              <div className="bg-gradient-to-br from-rr-gold/10 to-rr-black border border-rr-gold/30 rounded-xl p-6 transform hover:scale-105 transition-all duration-300">
+              <div className="bg-gradient-to-br from-rr-gold/15 to-rr-black border border-rr-gold/50 rounded-xl p-6 transform hover:scale-105 transition-all duration-300 shadow-xl">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="bg-rr-gold text-rr-black w-16 h-16 rounded-full flex items-center justify-center font-heading text-2xl">
+                  <div className="bg-rr-gold text-rr-black w-16 h-16 rounded-full flex items-center justify-center font-heading text-2xl shadow-lg">
                     P3
                   </div>
                   <div>
-                    <h3 className="text-2xl font-heading text-rr-white">LATEST PODIUM! 🏆</h3>
-                    <p className="text-rr-gold">Road America - IMSA Challenge</p>
+                    <h3 className="text-2xl font-heading text-rr-white" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)'}}>LATEST PODIUM! 🏆</h3>
+                    <p className="text-rr-gold font-semibold" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'}}>Road America - IMSA Challenge</p>
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
-                    <span className="text-gray-400">Car:</span>
-                    <p className="text-rr-white font-bold">Porsche GT4 🏎️</p>
+                    <span className="text-gray-300">Car:</span>
+                    <p className="text-rr-white font-bold" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'}}>Porsche GT4 🏎️</p>
                   </div>
                   <div>
-                    <span className="text-gray-400">Incidents:</span>
-                    <p className="text-rr-neon-green font-bold">0x CLEAN! ✅</p>
+                    <span className="text-gray-300">Incidents:</span>
+                    <p className="text-rr-neon-green font-bold" style={{textShadow: '0 0 10px rgba(0, 255, 65, 0.6)'}}>0x CLEAN! ✅</p>
                   </div>
                 </div>
               </div>
