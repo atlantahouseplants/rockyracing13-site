@@ -1,7 +1,122 @@
 import Link from 'next/link'
 import { Play, Zap, Trophy, Youtube, Gamepad2, Flag } from 'lucide-react'
+import { getDriverData, type RaceResult } from '@/lib/iracing'
 
-export default function Home() {
+const formatRaceDate = (value: string | null | undefined) => {
+  if (!value) {
+    return null
+  }
+  const timestamp = Date.parse(value)
+  if (Number.isNaN(timestamp)) {
+    return null
+  }
+  return new Intl.DateTimeFormat('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(new Date(timestamp))
+}
+
+const formatRaceLocation = (race: RaceResult | null) => {
+  if (!race) {
+    return null
+  }
+  const parts = [race?.trackName, race?.trackConfig].filter(
+    (part): part is string => Boolean(part && part.trim()),
+  )
+  return parts.join(' - ')
+}
+
+export default async function Home() {
+  const driverData = await getDriverData()
+  const { overview, career, latestRace, latestPodium, samplePodiumCount, sampleWinCount, error } = driverData
+  const displayRace = latestPodium ?? latestRace
+  const hasRace = Boolean(displayRace)
+
+  const finishPositionText =
+    hasRace && typeof displayRace?.finishPosition === 'number'
+      ? `P${displayRace.finishPosition}`
+      : 'N/A'
+
+  const raceLocation = formatRaceLocation(displayRace)
+  const raceDate = displayRace?.startTime ? formatRaceDate(displayRace.startTime) : null
+  const raceSubtitle = hasRace
+    ? [displayRace?.seriesName ?? 'Official Series', raceDate].filter(Boolean).join(' - ')
+    : 'No official results available yet.'
+
+  const carDisplay = displayRace?.carName ?? 'TBD'
+  const incidentsDisplay =
+    displayRace?.incidents !== null && displayRace?.incidents !== undefined
+      ? `${displayRace.incidents}x`
+      : 'N/A'
+
+  const latestBadgeTitle = latestPodium ? 'Latest Podium' : 'Recent Result'
+  const raceSummaryText = hasRace
+    ? [finishPositionText, raceLocation ?? displayRace?.seriesName ?? null]
+        .filter(Boolean)
+        .join(' - ')
+    : 'Awaiting next official race'
+
+  const incidentsSummary = hasRace
+    ? incidentsDisplay === 'N/A'
+      ? 'Incidents pending'
+      : `${incidentsDisplay} in last race`
+    : 'No incident data yet'
+
+  const iratingDisplay =
+    overview?.irating !== null && overview?.irating !== undefined
+      ? Math.round(overview.irating).toLocaleString()
+      : 'N/A'
+  const licenseDisplay =
+    overview?.licenseDisplay ??
+    (overview?.safetyRating !== null && overview?.safetyRating !== undefined
+      ? overview.safetyRating.toFixed(2)
+      : 'N/A')
+
+  const winsDisplay =
+    career?.wins !== null && career?.wins !== undefined
+      ? Math.round(career.wins).toLocaleString()
+      : sampleWinCount
+      ? sampleWinCount.toLocaleString()
+      : 'N/A'
+
+  const podiumSource = career?.podiums ?? career?.top5 ?? null
+  const podiumDisplay =
+    podiumSource !== null && podiumSource !== undefined
+      ? Math.round(podiumSource).toLocaleString()
+      : samplePodiumCount
+      ? samplePodiumCount.toLocaleString()
+      : 'N/A'
+
+  const podiumLabel = career?.podiums !== null && career?.podiums !== undefined ? 'Podiums' : 'Recent Podiums'
+  const usesSamplePodiums = career?.podiums === null || career?.podiums === undefined
+  const usesSampleWins = career?.wins === null || career?.wins === undefined
+  const showSampleHint = usesSamplePodiums || usesSampleWins
+
+  const quickStats = [
+    {
+      title: latestBadgeTitle.toUpperCase(),
+      value: raceSummaryText,
+      border: 'border-rr-gold/70',
+      text: 'text-rr-gold',
+      glow: '0 0 15px rgba(212, 175, 55, 0.8)',
+    },
+    {
+      title: 'INCIDENTS',
+      value: incidentsSummary,
+      border: 'border-rr-neon-green/70',
+      text: 'text-rr-neon-green',
+      glow: '0 0 15px rgba(0, 255, 65, 0.8)',
+    },
+    {
+      title: 'DRIVER SNAPSHOT',
+      value: `iRating ${iratingDisplay} / License ${licenseDisplay}`,
+      border: 'border-rr-electric-blue/70',
+      text: 'text-rr-electric-blue',
+      glow: '0 0 15px rgba(0, 191, 255, 0.8)',
+    },
+  ]
+
   return (
     <div className="min-h-screen bg-rr-black overflow-hidden">
       {/* EPIC RACING HERO SECTION */}
@@ -118,17 +233,20 @@ export default function Home() {
 
           {/* Quick Stats Bar - Enhanced Visibility */}
           <div className="mt-12 flex justify-center gap-8 flex-wrap">
-            <div className="bg-rr-black/90 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-gold/70 shadow-xl">
-              <div className="text-rr-gold font-bold text-lg" style={{textShadow: '0 0 15px rgba(212, 175, 55, 0.8)'}}>🏆 LATEST PODIUM</div>
-              <div className="text-rr-white text-sm" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>P3 at Road America</div>
-            </div>
-            <div className="bg-rr-black/90 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-neon-green/70 shadow-xl">
-              <div className="text-rr-neon-green font-bold text-lg" style={{textShadow: '0 0 15px rgba(0, 255, 65, 0.8)'}}>✅ CLEAN RACER</div>
-              <div className="text-rr-white text-sm" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>0x Incidents</div>
-            </div>
-            <div className="bg-rr-black/90 backdrop-blur-sm rounded-xl px-6 py-3 border border-rr-electric-blue/70 shadow-xl">
-              <div className="text-rr-electric-blue font-bold text-lg" style={{textShadow: '0 0 15px rgba(0, 191, 255, 0.8)'}}>📺 CONTENT CREATOR</div>
-              <div className="text-rr-white text-sm" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>@rockyracing13</div>
+            {quickStats.map(({ title, value, border, text, glow }) => (
+              <div
+                key={title}
+                className={`bg-rr-black/90 backdrop-blur-sm rounded-xl px-6 py-3 border shadow-xl ${border}`}
+              >
+                <div className={`${text} font-bold text-lg`} style={{textShadow: glow}}>
+                  {title}
+                </div>
+                <div className="text-rr-white text-sm" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>
+                  {value}
+                </div>
+              </div>
+            ))}
+          </div>
             </div>
           </div>
         </div>
@@ -196,23 +314,43 @@ export default function Home() {
               <div className="bg-gradient-to-br from-rr-gold/15 to-rr-black border border-rr-gold/50 rounded-xl p-6 transform hover:scale-105 transition-all duration-300 shadow-xl">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="bg-rr-gold text-rr-black w-16 h-16 rounded-full flex items-center justify-center font-heading text-2xl shadow-lg">
-                    P3
+                    {finishPositionText}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-heading text-rr-white" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)'}}>LATEST PODIUM! 🏆</h3>
-                    <p className="text-rr-gold font-semibold" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'}}>Road America - IMSA Challenge</p>
+                    <h3 className="text-2xl font-heading text-rr-white" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)'}}>
+                      {latestPodium ? 'Latest Podium Finish' : hasRace ? 'Most Recent Official Result' : 'Ready for the next grid'}
+                    </h3>
+                    <p className="text-rr-gold font-semibold" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'}}>
+                      {raceLocation || displayRace?.seriesName || 'Series TBA'}
+                    </p>
+                    {raceSubtitle && (
+                      <p className="text-gray-300 text-xs mt-1" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.7)'}}>
+                        {raceSubtitle}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div>
                     <span className="text-gray-300">Car:</span>
-                    <p className="text-rr-white font-bold" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'}}>Porsche GT4 🏎️</p>
+                    <p className="text-rr-white font-bold" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'}}>{carDisplay}</p>
                   </div>
                   <div>
                     <span className="text-gray-300">Incidents:</span>
-                    <p className="text-rr-neon-green font-bold" style={{textShadow: '0 0 10px rgba(0, 255, 65, 0.6)'}}>0x CLEAN! ✅</p>
+                    <p className="text-rr-neon-green font-bold" style={{textShadow: '0 0 10px rgba(0, 255, 65, 0.6)'}}>{incidentsDisplay}</p>
                   </div>
                 </div>
+                {error && (
+                  <p className="mt-4 text-xs text-rr-racing-red/80" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.6)'}}>
+                    Live stats temporarily unavailable: {error}
+                  </p>
+                )}
+                {showSampleHint && (
+                  <p className="text-xs text-gray-400 mt-3">
+                    Recent totals reflect the latest iRacing data; lifetime numbers update automatically when new stats publish.
+                  </p>
+                )}
+              </div>
               </div>
               
               <div className="text-center">
