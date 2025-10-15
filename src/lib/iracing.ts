@@ -257,7 +257,7 @@ const pickCareerEntry = (raw: unknown, preferredCategory?: string): CareerOvervi
     return null
   }
 
-  let candidate =
+  const candidate =
     (preferredCategory && entries.find(([key]) => toCategorySlug(key) === preferredCategory)) ?? entries[0]
 
   if (!candidate) {

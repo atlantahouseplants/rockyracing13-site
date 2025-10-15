@@ -247,8 +247,6 @@ export default async function Home() {
               </div>
             ))}
           </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -351,8 +349,7 @@ export default async function Home() {
                   </p>
                 )}
               </div>
-              </div>
-              
+
               <div className="text-center">
                 <img 
                   src="/max-profile.jpg" 
