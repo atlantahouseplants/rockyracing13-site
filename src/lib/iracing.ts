@@ -303,25 +303,29 @@ export const getDriverData = cache(async (): Promise<DriverData> => {
       withAuth((api) => api.stats.memberRecentRaces({ custId })),
     ])
 
-    const licensesRaw =
-      (summary && typeof summary === 'object'
-        ? ((summary as Record<string, unknown>).licenses ??
-          (summary as Record<string, unknown>).licenseLevels ??
-          (summary as Record<string, unknown>).license)
-        : []) ?? []
+    // Extract career stats - this has the win/podium data
+    // Sports Car category has the most activity, so prioritize that
+    const career = careerRaw && typeof careerRaw === 'object' && Array.isArray((careerRaw as Record<string, unknown>).stats)
+      ? (() => {
+          const stats = (careerRaw as Record<string, unknown>).stats as Array<Record<string, unknown>>
+          // Find Sports Car category or the one with most starts
+          const sportsCarStats = stats.find(s => s.category === 'Sports Car')
+          const mostActiveStats = stats.reduce((best, current) =>
+            toNumber(current.starts) > toNumber(best.starts) ? current : best
+          , stats[0])
 
-    const licenses = Array.isArray(licensesRaw)
-      ? (licensesRaw.map(normalizeLicense).filter(Boolean) as NormalizedLicense[])
-      : []
-
-    const primaryLicense = pickPrimaryLicense(licenses, preferredCategory)
-    const career = careerRaw && typeof careerRaw === 'object'
-      ? pickCareerEntry(
-          (careerRaw as Record<string, unknown>).careerStats ?? careerRaw,
-          primaryLicense?.category ?? preferredCategory,
-        )
+          const chosenStats = sportsCarStats || mostActiveStats
+          return chosenStats ? {
+            category: toCategorySlug(chosenStats.category as string),
+            wins: toNumber(chosenStats.wins),
+            podiums: toNumber(chosenStats.top5),
+            top5: toNumber(chosenStats.top5),
+            starts: toNumber(chosenStats.starts),
+          } : null
+        })()
       : null
 
+    // Extract races - this has the iRating and license data
     const races = extractRaces(recentRaw)
       .map(normalizeRace)
       .filter(Boolean) as RaceResult[]
@@ -331,6 +335,26 @@ export const getDriverData = cache(async (): Promise<DriverData> => {
       const timeB = b.startTime ? Date.parse(b.startTime) : 0
       return timeB - timeA
     })
+
+    // Get iRating and license from most recent race
+    const latestRaceRaw = extractRaces(recentRaw)[0]
+    const currentIRating = latestRaceRaw && typeof latestRaceRaw === 'object'
+      ? toNumber((latestRaceRaw as Record<string, unknown>).newiRating ?? (latestRaceRaw as Record<string, unknown>).oldiRating)
+      : null
+
+    const licenseLevel = latestRaceRaw && typeof latestRaceRaw === 'object'
+      ? toNumber((latestRaceRaw as Record<string, unknown>).licenseLevel)
+      : null
+
+    // Convert license level to safety rating (rough approximation)
+    const safetyRating = licenseLevel ? Math.floor(licenseLevel / 4) + (licenseLevel % 4) * 0.25 : null
+    const licenseClass = licenseLevel
+      ? licenseLevel >= 20 ? 'Pro'
+      : licenseLevel >= 16 ? 'A'
+      : licenseLevel >= 12 ? 'B'
+      : licenseLevel >= 8 ? 'C'
+      : 'D'
+      : null
 
     const latestRace = sortedRaces[0] ?? null
     const latestPodium =
@@ -346,14 +370,12 @@ export const getDriverData = cache(async (): Promise<DriverData> => {
     ).length
 
     return {
-      overview: primaryLicense
-        ? {
-            category: primaryLicense.category,
-            irating: primaryLicense.irating,
-            safetyRating: primaryLicense.safetyRating,
-            licenseDisplay: primaryLicense.display,
-          }
-        : null,
+      overview: currentIRating || licenseLevel ? {
+        category: preferredCategory,
+        irating: currentIRating,
+        safetyRating: safetyRating,
+        licenseDisplay: licenseClass ? `${licenseClass} ${safetyRating?.toFixed(2) ?? ''}` : null,
+      } : null,
       career,
       recentRaces: sortedRaces,
       latestRace,
