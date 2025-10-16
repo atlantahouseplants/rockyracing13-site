@@ -50,6 +50,21 @@ export default async function Home() {
       ? `${displayRace.incidents}x`
       : 'N/A'
 
+  // Enhanced analytics
+  const recentWins = driverData.recentRaces?.filter(race => race.finishPosition === 1).length || 0
+  const recentPodiums = driverData.recentRaces?.filter(race => race.finishPosition && race.finishPosition <= 3).length || 0
+  const avgFinishPosition = driverData.recentRaces && driverData.recentRaces.length > 0
+    ? Math.round(driverData.recentRaces.reduce((sum, race) => sum + (race.finishPosition || 99), 0) / driverData.recentRaces.length)
+    : null
+  const cleanRacePercentage = driverData.recentRaces && driverData.recentRaces.length > 0
+    ? Math.round((driverData.recentRaces.filter(race => (race.incidents || 0) === 0).length / driverData.recentRaces.length) * 100)
+    : null
+
+  const strengthOfField = displayRace?.strengthOfField
+  const raceQuality = strengthOfField && strengthOfField > 2000 ? 'Elite Field' :
+                      strengthOfField && strengthOfField > 1500 ? 'Strong Field' :
+                      strengthOfField && strengthOfField > 1000 ? 'Competitive Field' : 'Developing Field'
+
   const latestBadgeTitle = latestPodium ? 'Latest Podium' : 'Recent Result'
   const raceSummaryText = hasRace
     ? [finishPositionText, raceLocation ?? displayRace?.seriesName ?? null]
@@ -125,10 +140,10 @@ export default async function Home() {
           </video>
           
           {/* Enhanced dark overlay for better text readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-rr-black/85 via-rr-black/75 to-rr-black/85"></div>
-          
-          {/* Racing effects overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-rr-gold/5 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-rr-black/92 via-rr-black/88 to-rr-black/92"></div>
+
+          {/* Stronger contrast overlay - removed gold overlay that caused conflicts */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-rr-black/10 to-rr-black/20"></div>
         </div>
 
         {/* Animated Speed Lines */}
@@ -146,8 +161,8 @@ export default async function Home() {
         
         <div className="relative z-40 text-center max-w-7xl mx-auto px-4">
           
-          {/* MASSIVE Title - Crystal Clear Gold */}
-          <h1 className="font-heading text-7xl sm:text-8xl lg:text-9xl text-rr-gold mb-4 tracking-wider font-black" style={{textShadow: '0 0 40px rgba(212, 175, 55, 1), 0 0 80px rgba(212, 175, 55, 0.8), 0 6px 15px rgba(0, 0, 0, 1)'}}>
+          {/* MASSIVE Title - Crystal Clear Gold with Enhanced Readability */}
+          <h1 className="font-heading text-7xl sm:text-8xl lg:text-9xl text-rr-gold mb-4 tracking-wider font-black" style={{textShadow: '0 0 40px rgba(212, 175, 55, 1), 0 0 80px rgba(212, 175, 55, 0.8), 0 8px 20px rgba(0, 0, 0, 1), 2px 2px 0px rgba(0, 0, 0, 1)', WebkitTextStroke: '1px rgba(0, 0, 0, 0.8)'}}>
             ROCKY RACING
           </h1>
           
@@ -155,10 +170,10 @@ export default async function Home() {
           <div className="flex items-center justify-center gap-4 mb-6 flex-wrap">
             <Flag className="text-rr-gold animate-bounce" size={28} />
             <div className="text-center">
-              <p className="font-heading text-3xl sm:text-4xl text-rr-gold font-black tracking-wide" style={{textShadow: '0 0 40px rgba(212, 175, 55, 1), 0 0 80px rgba(212, 175, 55, 0.8), 0 6px 15px rgba(0, 0, 0, 1)'}}>
-                13-YEAR-OLD <span className="text-rr-neon-green font-black animate-pulse" style={{textShadow: '0 0 35px rgba(0, 255, 65, 1), 0 0 70px rgba(0, 255, 65, 0.8), 0 6px 15px rgba(0, 0, 0, 1)'}}>SPEED DEMON</span>
+              <p className="font-heading text-3xl sm:text-4xl text-rr-gold font-black tracking-wide" style={{textShadow: '0 0 40px rgba(212, 175, 55, 1), 0 0 80px rgba(212, 175, 55, 0.8), 0 8px 20px rgba(0, 0, 0, 1), 2px 2px 0px rgba(0, 0, 0, 1)', WebkitTextStroke: '0.5px rgba(0, 0, 0, 0.8)'}}>
+                13-YEAR-OLD <span className="text-rr-neon-green font-black animate-pulse" style={{textShadow: '0 0 35px rgba(0, 255, 65, 1), 0 0 70px rgba(0, 255, 65, 0.8), 0 8px 20px rgba(0, 0, 0, 1), 2px 2px 0px rgba(0, 0, 0, 1)', WebkitTextStroke: '0.5px rgba(0, 0, 0, 0.9)'}}>SPEED DEMON</span>
               </p>
-              <p className="font-heading text-lg sm:text-xl text-rr-gold font-black mt-2" style={{textShadow: '0 0 35px rgba(212, 175, 55, 1), 0 0 70px rgba(212, 175, 55, 0.8), 0 5px 12px rgba(0, 0, 0, 1)'}}>
+              <p className="font-heading text-lg sm:text-xl text-rr-gold font-black mt-2" style={{textShadow: '0 0 35px rgba(212, 175, 55, 1), 0 0 70px rgba(212, 175, 55, 0.8), 0 6px 15px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)'}}
                 🎮 iRACING CHAMPION IN THE MAKING 🎮
               </p>
             </div>
@@ -166,13 +181,13 @@ export default async function Home() {
           </div>
           
           {/* Epic Call to Action - Enhanced Readability */}
-          <div className="bg-rr-black/85 backdrop-blur-sm rounded-2xl p-6 mb-8 border border-rr-gold/60 shadow-2xl">
-            <p className="text-2xl text-rr-white mb-2 font-bold" style={{textShadow: '0 2px 8px rgba(0, 0, 0, 0.9)'}}>
+          <div className="bg-rr-black/95 backdrop-blur-md rounded-2xl p-6 mb-8 border border-rr-gold/70 shadow-2xl">
+            <p className="text-2xl text-rr-white mb-2 font-bold" style={{textShadow: '0 4px 12px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)'}}>
               🔥 CRUSHING THE COMPETITION 🔥
             </p>
-            <p className="text-lg text-rr-white mb-4" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>
-              Epic iRacing content • Race highlights • Setup guides • 
-              <span className="text-rr-neon-green font-bold animate-pulse" style={{textShadow: '0 0 20px rgba(0, 255, 65, 0.9)'}}> JOIN THE CREW! </span>
+            <p className="text-lg text-rr-white mb-4" style={{textShadow: '0 4px 10px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)'}}>
+              Epic iRacing content • Race highlights • Setup guides •
+              <span className="text-rr-neon-green font-bold animate-pulse" style={{textShadow: '0 0 25px rgba(0, 255, 65, 1), 0 4px 10px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)'}}> JOIN THE CREW! </span>
             </p>
           </div>
           
@@ -220,12 +235,12 @@ export default async function Home() {
             {quickStats.map(({ title, value, border, text, glow }) => (
               <div
                 key={title}
-                className={`bg-rr-black/90 backdrop-blur-sm rounded-xl px-6 py-3 border shadow-xl ${border}`}
+                className={`bg-rr-black/96 backdrop-blur-md rounded-xl px-6 py-3 border-2 shadow-2xl ${border}`}
               >
-                <div className={`${text} font-bold text-lg`} style={{textShadow: glow}}>
+                <div className={`${text} font-bold text-lg`} style={{textShadow: `${glow}, 0 4px 8px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)`}}>
                   {title}
                 </div>
-                <div className="text-rr-white text-sm" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>
+                <div className="text-rr-white text-sm font-semibold" style={{textShadow: '0 4px 8px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)'}}>
                   {value}
                 </div>
               </div>
@@ -291,62 +306,172 @@ export default async function Home() {
               </div>
             </div>
             
-            {/* Racing Stats & Call to Action */}
+            {/* Enhanced Racing Performance Analytics */}
             <div className="space-y-6">
-              <div className="bg-gradient-to-br from-rr-gold/15 to-rr-black border border-rr-gold/50 rounded-xl p-6 transform hover:scale-105 transition-all duration-300 shadow-xl">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="bg-rr-gold text-rr-black w-16 h-16 rounded-full flex items-center justify-center font-heading text-2xl shadow-lg">
-                    {finishPositionText}
+              {/* Main Race Result Card - Enhanced */}
+              <div className="bg-gradient-to-br from-rr-gold/15 to-rr-black border border-rr-gold/50 rounded-xl p-6 transform hover:scale-105 transition-all duration-300 shadow-2xl">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="relative">
+                    <div className={`w-20 h-20 rounded-full flex items-center justify-center font-heading text-3xl shadow-2xl ${
+                      latestPodium ? 'bg-gradient-to-br from-rr-gold to-rr-speed-yellow text-rr-black' :
+                      'bg-gradient-to-br from-rr-electric-blue to-blue-400 text-white'
+                    }`}>
+                      {finishPositionText}
+                    </div>
+                    {latestPodium && (
+                      <div className="absolute -top-2 -right-2 text-2xl animate-bounce">🏆</div>
+                    )}
                   </div>
-                  <div>
-                    <h3 className="text-2xl font-heading text-rr-white" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)'}}>
-                      {latestPodium ? 'Latest Podium Finish' : hasRace ? 'Most Recent Official Result' : 'Ready for the next grid'}
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-heading text-rr-white mb-1" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.8)'}}>
+                      {latestPodium ? 'VICTORY CELEBRATION! 🎉' : hasRace ? 'Latest Battle Result' : 'Ready for the Grid'}
                     </h3>
-                    <p className="text-rr-gold font-semibold" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'}}>
+                    <p className="text-rr-gold font-bold text-lg" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'}}>
                       {raceLocation || displayRace?.seriesName || 'Series TBA'}
                     </p>
                     {raceSubtitle && (
-                      <p className="text-gray-300 text-xs mt-1" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.7)'}}>
+                      <p className="text-gray-300 text-sm mt-1" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.7)'}}>
                         {raceSubtitle}
+                      </p>
+                    )}
+                    {strengthOfField && (
+                      <p className="text-rr-electric-blue text-xs font-semibold mt-1">
+                        {raceQuality} • SOF: {strengthOfField}
                       </p>
                     )}
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <div>
-                    <span className="text-gray-300">Car:</span>
-                    <p className="text-rr-white font-bold" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.8)'}}>{carDisplay}</p>
+
+                {/* Enhanced Race Details Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+                  <div className="bg-rr-black/70 border border-gray-600/30 rounded-lg p-3 text-center">
+                    <span className="text-rr-white/90 text-xs block font-semibold">VEHICLE</span>
+                    <p className="text-rr-white font-bold text-sm" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)'}}>
+                      {displayRace?.carName ? displayRace.carName.replace(/^.+?([A-Z][a-z]+ [A-Z0-9].*)$/, '$1') : 'TBD'}
+                    </p>
                   </div>
-                  <div>
-                    <span className="text-gray-300">Incidents:</span>
-                    <p className="text-rr-neon-green font-bold" style={{textShadow: '0 0 10px rgba(0, 255, 65, 0.6)'}}>{incidentsDisplay}</p>
+                  <div className="bg-rr-black/70 border border-gray-600/30 rounded-lg p-3 text-center">
+                    <span className="text-rr-white/90 text-xs block font-semibold">INCIDENTS</span>
+                    <p className={`font-bold text-sm drop-shadow-lg ${
+                      (displayRace?.incidents || 0) === 0 ? 'text-rr-neon-green' :
+                      (displayRace?.incidents || 0) <= 2 ? 'text-rr-speed-yellow' :
+                      'text-rr-racing-red'
+                    }`} style={{textShadow: '0 0 15px currentColor, 0 2px 6px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)'}}>
+                      {incidentsDisplay} {(displayRace?.incidents || 0) === 0 ? '✨' : ''}
+                    </p>
                   </div>
+                  {latestPodium && (
+                    <div className="bg-rr-gold/30 border border-rr-gold/50 rounded-lg p-3 text-center col-span-2 md:col-span-1">
+                      <span className="text-rr-gold text-xs block font-semibold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 1)'}}}>PODIUM TYPE</span>
+                      <p className="text-rr-gold font-bold text-sm" style={{textShadow: '0 0 15px rgba(212, 175, 55, 0.8), 0 2px 6px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)'}}>
+                        {finishPositionText === 'P1' ? 'VICTORY! 🥇' :
+                         finishPositionText === 'P2' ? 'RUNNER-UP 🥈' :
+                         finishPositionText === 'P3' ? 'THIRD PLACE 🥉' : 'PODIUM!'}
+                      </p>
+                    </div>
+                  )}
                 </div>
+
+                {/* Performance Insights */}
+                {driverData.recentRaces && driverData.recentRaces.length > 0 && (
+                  <div className="border-t border-gray-700/50 pt-4">
+                    <h4 className="text-rr-electric-blue font-bold text-sm mb-3">📊 RECENT PERFORMANCE INSIGHTS</h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      <div className="bg-rr-black/50 rounded-lg p-2 text-center">
+                        <div className="text-rr-gold font-bold text-lg drop-shadow-lg" style={{textShadow: '0 0 15px rgba(212, 175, 55, 0.8), 0 2px 4px rgba(0, 0, 0, 1)'}}>{recentWins}</div>
+                        <div className="text-rr-white/90 text-xs font-semibold">Wins (Last 10)</div>
+                      </div>
+                      <div className="bg-rr-black/50 rounded-lg p-2 text-center">
+                        <div className="text-rr-neon-green font-bold text-lg drop-shadow-lg" style={{textShadow: '0 0 15px rgba(0, 255, 65, 0.8), 0 2px 4px rgba(0, 0, 0, 1)'}}>{recentPodiums}</div>
+                        <div className="text-rr-white/90 text-xs font-semibold">Podiums (Last 10)</div>
+                      </div>
+                      {avgFinishPosition && (
+                        <div className="bg-rr-black/50 rounded-lg p-2 text-center">
+                          <div className="text-rr-electric-blue font-bold text-lg drop-shadow-lg" style={{textShadow: '0 0 15px rgba(0, 191, 255, 0.8), 0 2px 4px rgba(0, 0, 0, 1)'}}>P{avgFinishPosition}</div>
+                          <div className="text-rr-white/90 text-xs font-semibold">Avg Position</div>
+                        </div>
+                      )}
+                      {cleanRacePercentage !== null && (
+                        <div className="bg-rr-black/50 rounded-lg p-2 text-center">
+                          <div className="text-rr-neon-green font-bold text-lg drop-shadow-lg" style={{textShadow: '0 0 15px rgba(0, 255, 65, 0.8), 0 2px 4px rgba(0, 0, 0, 1)'}}>{cleanRacePercentage}%</div>
+                          <div className="text-rr-white/90 text-xs font-semibold">Clean Races</div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
                 {error && (
                   <p className="mt-4 text-xs text-rr-racing-red/80" style={{textShadow: '0 1px 3px rgba(0, 0, 0, 0.6)'}}>
-                    Live stats temporarily unavailable: {error}
-                  </p>
-                )}
-                {showSampleHint && (
-                  <p className="text-xs text-gray-400 mt-3">
-                    Recent totals reflect the latest iRacing data; lifetime numbers update automatically when new stats publish.
+                    ⚠️ Live stats temporarily unavailable: {error}
                   </p>
                 )}
               </div>
 
-              <div className="text-center">
-                <img 
-                  src="/max-profile.jpg" 
-                  alt="Max Racing" 
-                  className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-rr-gold shadow-xl"
-                />
-                <h3 className="text-2xl font-heading text-rr-white mb-2">MAX - AGE 13</h3>
-                <p className="text-rr-gold font-bold mb-4">iRacing Champion in the Making! 🎮</p>
-                <div className="flex justify-center gap-2">
-                  <span className="bg-rr-neon-green/20 text-rr-neon-green px-3 py-1 rounded-full text-sm font-bold">CLEAN RACER</span>
-                  <span className="bg-rr-electric-blue/20 text-rr-electric-blue px-3 py-1 rounded-full text-sm font-bold">CONTENT CREATOR</span>
-                  <span className="bg-rr-racing-red/20 text-rr-racing-red px-3 py-1 rounded-full text-sm font-bold">SPEED DEMON</span>
+              {/* Driver Performance Summary */}
+              <div className="bg-gradient-to-br from-rr-electric-blue/15 to-rr-black border border-rr-electric-blue/50 rounded-xl p-6 shadow-xl">
+                <h3 className="text-xl font-heading text-rr-electric-blue mb-4 flex items-center gap-2">
+                  📈 SEASON HIGHLIGHTS
+                </h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center bg-rr-black/60 border border-gray-600/20 rounded-lg p-3">
+                    <span className="text-rr-white/90 font-semibold">Career iRating:</span>
+                    <span className="text-rr-electric-blue font-bold drop-shadow-lg" style={{textShadow: '0 0 10px rgba(0, 191, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 1)'}}>{iratingDisplay} {overview?.irating && overview.irating >= 400 ? '📈' : ''}</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-rr-black/60 border border-gray-600/20 rounded-lg p-3">
+                    <span className="text-rr-white/90 font-semibold">License Class:</span>
+                    <span className="text-rr-neon-green font-bold drop-shadow-lg" style={{textShadow: '0 0 10px rgba(0, 255, 65, 0.6), 0 2px 4px rgba(0, 0, 0, 1)'}}>{licenseDisplay} {overview?.safetyRating && overview.safetyRating >= 3.0 ? '⭐' : ''}</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-rr-black/60 border border-gray-600/20 rounded-lg p-3">
+                    <span className="text-rr-white/90 font-semibold">Total Podiums:</span>
+                    <span className="text-rr-gold font-bold drop-shadow-lg" style={{textShadow: '0 0 10px rgba(212, 175, 55, 0.6), 0 2px 4px rgba(0, 0, 0, 1)'}}>{career?.podiums || 'N/A'} 🏆</span>
+                  </div>
+                  <div className="flex justify-between items-center bg-rr-black/60 border border-gray-600/20 rounded-lg p-3">
+                    <span className="text-rr-white/90 font-semibold">Career Wins:</span>
+                    <span className="text-rr-speed-yellow font-bold drop-shadow-lg" style={{textShadow: '0 0 10px rgba(255, 206, 84, 0.6), 0 2px 4px rgba(0, 0, 0, 1)'}}>{career?.wins || 'N/A'} 🥇</span>
+                  </div>
                 </div>
+              </div>
+
+              {/* Enhanced Driver Profile Card */}
+              <div className="bg-gradient-to-br from-rr-neon-green/15 to-rr-black border border-rr-neon-green/50 rounded-xl p-6 text-center shadow-xl">
+                <div className="relative inline-block mb-4">
+                  <img
+                    src="/max-profile.jpg"
+                    alt="Max Racing"
+                    className="w-28 h-28 rounded-full border-4 border-rr-gold shadow-2xl"
+                  />
+                  {latestPodium && (
+                    <div className="absolute -top-2 -right-2 bg-rr-gold text-rr-black rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold animate-pulse">
+                      🏆
+                    </div>
+                  )}
+                </div>
+                <h3 className="text-2xl font-heading text-rr-white mb-2">MAX HENDERSON - AGE 13</h3>
+                <p className="text-rr-gold font-bold mb-4 text-lg">
+                  {latestPodium ? 'PODIUM FINISHER! 🎉' : 'Rising iRacing Star! 🎮'}
+                </p>
+
+                {/* Dynamic Achievement Badges */}
+                <div className="flex justify-center gap-2 flex-wrap mb-4">
+                  {cleanRacePercentage && cleanRacePercentage >= 70 && (
+                    <span className="bg-rr-neon-green/20 text-rr-neon-green px-3 py-1 rounded-full text-sm font-bold">CLEAN RACER ✨</span>
+                  )}
+                  <span className="bg-rr-electric-blue/20 text-rr-electric-blue px-3 py-1 rounded-full text-sm font-bold">CONTENT CREATOR 📹</span>
+                  {recentWins > 0 && (
+                    <span className="bg-rr-gold/20 text-rr-gold px-3 py-1 rounded-full text-sm font-bold">RACE WINNER 🏆</span>
+                  )}
+                  {overview?.irating && overview.irating > 400 && (
+                    <span className="bg-rr-racing-red/20 text-rr-racing-red px-3 py-1 rounded-full text-sm font-bold">SKILLED DRIVER 🏁</span>
+                  )}
+                </div>
+
+                {/* Performance Streak */}
+                {recentPodiums > 0 && (
+                  <div className="bg-rr-gold/10 border border-rr-gold/30 rounded-lg p-3 mt-4">
+                    <p className="text-rr-gold text-sm font-bold">🔥 ON FIRE: {recentPodiums} podium{recentPodiums > 1 ? 's' : ''} in last 10 races!</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

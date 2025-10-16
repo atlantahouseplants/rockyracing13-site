@@ -1,17 +1,48 @@
 import { Metadata } from 'next'
 import { Users, Flag, Youtube, Mail, Download } from 'lucide-react'
 import Link from 'next/link'
+import { getDriverData } from '@/lib/iracing'
 
 export const metadata: Metadata = {
   title: 'Rocky Racing Team - Meet Our Drivers',
   description: 'Meet the Rocky Racing team members, download our media kit, and learn about our Friends of Rocky Racing community.',
 }
 
-export default function Team() {
+export default async function Team() {
+  const driverData = await getDriverData()
+  const { overview, career, latestRace, latestPodium, error } = driverData
+
+  const iratingDisplay = overview?.irating !== null && overview?.irating !== undefined
+    ? Math.round(overview.irating).toLocaleString()
+    : '~2100'
+
+  const safetyRatingDisplay = overview?.safetyRating !== null && overview?.safetyRating !== undefined
+    ? overview.safetyRating >= 4.0 ? 'A+' : overview.safetyRating >= 3.0 ? 'B+' : 'C+'
+    : 'A+'
+
+  const podiumDisplay = career?.podiums !== null && career?.podiums !== undefined
+    ? career.podiums.toString()
+    : '3+'
+
+  const winsDisplay = career?.wins !== null && career?.wins !== undefined
+    ? career.wins.toString()
+    : '1'
+
+  const latestResult = latestPodium || latestRace
   const achievements = [
-    { icon: '🏆', text: 'P3 at Road America - IMSA Challenge', color: 'gold' },
+    {
+      icon: latestPodium ? '🏆' : '🏁',
+      text: latestResult
+        ? `${latestPodium ? 'P' + latestPodium.finishPosition + ' podium at' : 'P' + latestResult.finishPosition + ' finish at'} ${latestResult.trackName || 'recent race'}`
+        : 'Ready for the next race weekend',
+      color: 'gold'
+    },
     { icon: '✅', text: 'Multiple clean races with 0x incidents', color: 'neon-green' },
-    { icon: '📈', text: 'Consistent iRating growth to 2100+', color: 'electric-blue' },
+    {
+      icon: '📈',
+      text: `Current iRating: ${iratingDisplay}`,
+      color: 'electric-blue'
+    },
     { icon: '🎥', text: 'Growing YouTube community @rockyracing13', color: 'racing-red' },
   ]
 
@@ -163,19 +194,19 @@ export default function Team() {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-rr-black/50 rounded-lg p-3 text-center">
                     <div className="text-rr-gold font-bold text-lg">iRating</div>
-                    <div className="text-rr-white text-2xl font-black">~2100</div>
+                    <div className="text-rr-white text-2xl font-black">{iratingDisplay}</div>
                   </div>
                   <div className="bg-rr-black/50 rounded-lg p-3 text-center">
                     <div className="text-rr-neon-green font-bold text-lg">Safety</div>
-                    <div className="text-rr-white text-2xl font-black">A+</div>
+                    <div className="text-rr-white text-2xl font-black">{safetyRatingDisplay}</div>
                   </div>
                   <div className="bg-rr-black/50 rounded-lg p-3 text-center">
                     <div className="text-rr-racing-red font-bold text-lg">Podiums</div>
-                    <div className="text-rr-white text-2xl font-black">3+</div>
+                    <div className="text-rr-white text-2xl font-black">{podiumDisplay}</div>
                   </div>
                   <div className="bg-rr-black/50 rounded-lg p-3 text-center">
                     <div className="text-rr-speed-yellow font-bold text-lg">Wins</div>
-                    <div className="text-rr-white text-2xl font-black">1</div>
+                    <div className="text-rr-white text-2xl font-black">{winsDisplay}</div>
                   </div>
                 </div>
               </div>
@@ -189,7 +220,7 @@ export default function Team() {
                   {achievements.map((achievement, index) => (
                     <div key={index} className="bg-rr-black/50 rounded-lg p-3 flex items-center gap-4">
                       <span className="text-2xl">{achievement.icon}</span>
-                      <span className="text-gray-100 text-sm leading-relaxed flex-1">{achievement.text}</span>
+                      <span className="text-rr-white text-sm leading-relaxed flex-1 font-medium" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>{achievement.text}</span>
                     </div>
                   ))}
                 </div>
@@ -201,17 +232,17 @@ export default function Team() {
                   🏎️ FAVORITE SETUP
                 </h3>
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center bg-rr-black/50 rounded-lg p-3">
-                    <span className="text-gray-300">Car:</span>
-                    <span className="text-rr-white font-bold">Porsche 992 GT3 Cup 🏎️</span>
+                  <div className="flex justify-between items-center bg-rr-black/70 border border-gray-600/20 rounded-lg p-3">
+                    <span className="text-rr-gold font-semibold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>Car:</span>
+                    <span className="text-rr-white font-bold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>Porsche 992 GT3 Cup 🏎️</span>
                   </div>
-                  <div className="flex justify-between items-center bg-rr-black/50 rounded-lg p-3">
-                    <span className="text-gray-300">Track:</span>
-                    <span className="text-rr-white font-bold">Spa-Francorchamps 🇧🇪</span>
+                  <div className="flex justify-between items-center bg-rr-black/70 border border-gray-600/20 rounded-lg p-3">
+                    <span className="text-rr-gold font-semibold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>Track:</span>
+                    <span className="text-rr-white font-bold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>Spa-Francorchamps 🇧🇪</span>
                   </div>
-                  <div className="flex justify-between items-center bg-rr-black/50 rounded-lg p-3">
-                    <span className="text-gray-300">Series:</span>
-                    <span className="text-rr-white font-bold">IMSA Michelin Pilot Challenge</span>
+                  <div className="flex justify-between items-center bg-rr-black/70 border border-gray-600/20 rounded-lg p-3">
+                    <span className="text-rr-gold font-semibold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>Series:</span>
+                    <span className="text-rr-white font-bold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>IMSA Michelin Pilot Challenge</span>
                   </div>
                 </div>
               </div>
@@ -244,9 +275,9 @@ export default function Team() {
                 </h3>
                 <p className="text-rr-electric-blue font-bold text-lg mb-4">The Strategic Mastermind 🧠</p>
                 <div className="bg-rr-black/60 rounded-xl p-4 mb-6">
-                  <p className="text-gray-100 leading-relaxed">
-                    Handles all business operations, content strategy, and provides guidance. 
-                    Every great driver needs a <span className="text-rr-electric-blue font-bold">strategic mind</span> behind the scenes. 
+                  <p className="text-rr-white leading-relaxed" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>
+                    Handles all business operations, content strategy, and provides guidance.
+                    Every great driver needs a <span className="text-rr-electric-blue font-bold" style={{textShadow: '0 0 10px rgba(0, 191, 255, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8)'}}>strategic mind</span> behind the scenes.
                     All communications are parent-supervised for safety and professionalism.
                   </p>
                 </div>
@@ -273,9 +304,9 @@ export default function Team() {
                 </h3>
                 <p className="text-rr-neon-green font-bold text-lg mb-4">Team Mascot & Good Luck Charm 🦎</p>
                 <div className="bg-rr-black/60 rounded-xl p-4 mb-6">
-                  <p className="text-gray-100 leading-relaxed">
-                    Our legendary mascot and the <span className="text-rr-neon-green font-bold">heart of the team</span>! 
-                    Rocky has been present for every podium finish and brings the good vibes that 
+                  <p className="text-rr-white leading-relaxed" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>
+                    Our legendary mascot and the <span className="text-rr-neon-green font-bold" style={{textShadow: '0 0 10px rgba(0, 255, 65, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8)'}}>heart of the team</span>!
+                    Rocky has been present for every podium finish and brings the good vibes that
                     make racing fun. His golden scales inspired our team colors!
                   </p>
                 </div>
@@ -305,24 +336,24 @@ export default function Team() {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="text-left">
                 <h3 className="font-heading text-2xl text-rr-gold mb-4">📦 MEDIA KIT INCLUDES:</h3>
-                <ul className="space-y-2 text-gray-100">
-                  <li className="flex items-center gap-3">
+                <ul className="space-y-2 text-rr-white">
+                  <li className="flex items-center gap-3" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>
                     <span className="text-rr-neon-green">✅</span>
                     High-resolution team photos
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-center gap-3" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>
                     <span className="text-rr-neon-green">✅</span>
                     Rocky Racing logos & branding
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-center gap-3" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>
                     <span className="text-rr-neon-green">✅</span>
                     Racing statistics & achievements
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-center gap-3" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>
                     <span className="text-rr-neon-green">✅</span>
                     Team biography & story
                   </li>
-                  <li className="flex items-center gap-3">
+                  <li className="flex items-center gap-3" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>
                     <span className="text-rr-neon-green">✅</span>
                     Rocky the Gecko photos
                   </li>
@@ -343,7 +374,7 @@ export default function Team() {
                   CONTACT TEAM ROCKY
                 </a>
                 
-                <p className="text-gray-300 text-sm">
+                <p className="text-rr-white text-sm font-medium" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>
                   For partnerships, sponsorships, or press inquiries
                 </p>
               </div>
@@ -359,10 +390,10 @@ export default function Team() {
             <h3 className="font-heading text-xl text-blue-400 mb-3 font-bold" style={{textShadow: '0 0 10px rgba(59, 130, 246, 0.6)'}}>
               🛡️ PARENT-SUPERVISED OPERATIONS 🛡️
             </h3>
-            <p className="text-gray-200 leading-relaxed">
-              All team communications, content creation, and business activities are supervised and managed by Max&apos;s 
-              parents. We maintain a <span className="text-blue-400 font-bold">safe, educational environment</span> while pursuing our racing goals. 
-              For all business inquiries, please contact <span className="text-rr-gold font-bold">max@rockyracing13.com</span>.
+            <p className="text-rr-white leading-relaxed" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)'}}>
+              All team communications, content creation, and business activities are supervised and managed by Max&apos;s
+              parents. We maintain a <span className="text-blue-400 font-bold" style={{textShadow: '0 0 10px rgba(59, 130, 246, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8)'}}>safe, educational environment</span> while pursuing our racing goals.
+              For all business inquiries, please contact <span className="text-rr-gold font-bold" style={{textShadow: '0 0 10px rgba(212, 175, 55, 0.6), 0 2px 4px rgba(0, 0, 0, 0.8)'}}>max@rockyracing13.com</span>.
             </p>
           </div>
         </div>
