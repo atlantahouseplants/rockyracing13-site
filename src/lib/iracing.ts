@@ -297,7 +297,7 @@ export const getDriverData = cache(async (): Promise<DriverData> => {
   const preferredCategory = toCategorySlug(process.env.IRACING_PRIMARY_CATEGORY)
 
   try {
-    const [summary, careerRaw, recentRaw] = await Promise.all([
+    const [, careerRaw, recentRaw] = await Promise.all([
       withAuth((api) => api.stats.memberSummary({ custId })),
       withAuth((api) => api.stats.memberCareer({ custId })),
       withAuth((api) => api.stats.memberRecentRaces({ custId })),
@@ -308,11 +308,15 @@ export const getDriverData = cache(async (): Promise<DriverData> => {
     const career = careerRaw && typeof careerRaw === 'object' && Array.isArray((careerRaw as Record<string, unknown>).stats)
       ? (() => {
           const stats = (careerRaw as Record<string, unknown>).stats as Array<Record<string, unknown>>
+          if (stats.length === 0) return null
+
           // Find Sports Car category or the one with most starts
           const sportsCarStats = stats.find(s => s.category === 'Sports Car')
-          const mostActiveStats = stats.reduce((best, current) =>
-            toNumber(current.starts) > toNumber(best.starts) ? current : best
-          , stats[0])
+          const mostActiveStats = stats.reduce((best, current) => {
+            const currentStarts = toNumber(current.starts) ?? 0
+            const bestStarts = toNumber(best.starts) ?? 0
+            return currentStarts > bestStarts ? current : best
+          }, stats[0])
 
           const chosenStats = sportsCarStats || mostActiveStats
           return chosenStats ? {

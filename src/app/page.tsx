@@ -29,7 +29,7 @@ const formatRaceLocation = (race: RaceResult | null) => {
 
 export default async function Home() {
   const driverData = await getDriverData()
-  const { overview, career, latestRace, latestPodium, samplePodiumCount, sampleWinCount, error } = driverData
+  const { overview, career, latestRace, latestPodium, error } = driverData
   const displayRace = latestPodium ?? latestRace
   const hasRace = Boolean(displayRace)
 
@@ -73,22 +73,6 @@ export default async function Home() {
       ? overview.safetyRating.toFixed(2)
       : 'N/A')
 
-  const winsDisplay =
-    career?.wins !== null && career?.wins !== undefined
-      ? Math.round(career.wins).toLocaleString()
-      : sampleWinCount
-      ? sampleWinCount.toLocaleString()
-      : 'N/A'
-
-  const podiumSource = career?.podiums ?? career?.top5 ?? null
-  const podiumDisplay =
-    podiumSource !== null && podiumSource !== undefined
-      ? Math.round(podiumSource).toLocaleString()
-      : samplePodiumCount
-      ? samplePodiumCount.toLocaleString()
-      : 'N/A'
-
-  const podiumLabel = career?.podiums !== null && career?.podiums !== undefined ? 'Podiums' : 'Recent Podiums'
   const usesSamplePodiums = career?.podiums === null || career?.podiums === undefined
   const usesSampleWins = career?.wins === null || career?.wins === undefined
   const showSampleHint = usesSamplePodiums || usesSampleWins

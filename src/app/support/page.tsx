@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
-import { Heart, Coffee, Gift, ExternalLink, DollarSign, TrendingUp } from 'lucide-react'
+import { Heart, Coffee, Gift, ExternalLink, TrendingUp } from 'lucide-react'
 import ProgressBar from '@/components/ProgressBar'
 
 export const metadata: Metadata = {

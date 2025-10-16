@@ -9,18 +9,20 @@ interface LogoProps {
 export default function Logo({ className = "h-8 w-auto", showText = false, textClass = "hidden ml-2 text-rr-white font-heading text-xl" }: LogoProps) {
   return (
     <>
-      <img 
+      <img
         className={`${className} filter brightness-0 invert`}
-        src="/rocky-racing-logo-bw.png" 
+        src="/rocky-racing-logo-bw.png"
         alt="Rocky Racing"
         onError={(e) => {
           e.currentTarget.src = "/logos/rocky-logo-1.svg"
           e.currentTarget.className = className
         }}
       />
-      <span className={textClass}>
-        Rocky Racing
-      </span>
+      {showText && (
+        <span className={textClass}>
+          Rocky Racing
+        </span>
+      )}
     </>
   )
 }
