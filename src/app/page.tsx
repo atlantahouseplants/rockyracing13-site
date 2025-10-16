@@ -123,7 +123,7 @@ export default async function Home() {
         {/* Hero Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/max-with-race-car-and-team.jpg"
+            src="/max-with-race-car.jpg"
             alt="Max with Professional Porsche Race Car"
             className="absolute inset-0 w-full h-full object-cover"
           />
