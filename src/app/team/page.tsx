@@ -52,9 +52,9 @@ export default async function Team() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Hero Background Image */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="/hero-image-2.png" 
-            alt="Racing Team" 
+          <img
+            src="/Max by bmw gpt.jpg"
+            alt="Max with BMW GT Car - Racing Team"
             className="absolute inset-0 w-full h-full object-cover"
           />
           
@@ -157,9 +157,9 @@ export default async function Team() {
             <div className="bg-gradient-to-br from-rr-gold/20 to-rr-black border-2 border-rr-gold rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
               <div className="text-center">
                 <div className="w-40 h-40 mx-auto mb-6">
-                  <img 
-                    src="/max-profile.jpg" 
-                    alt="Max - Rocky Racing Driver" 
+                  <img
+                    src="/Max in simmulator.jpg"
+                    alt="Max - Rocky Racing Driver in Simulator"
                     className="w-40 h-40 rounded-full object-cover border-4 border-rr-gold shadow-2xl"
                   />
                 </div>

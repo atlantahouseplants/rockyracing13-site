@@ -128,12 +128,12 @@ export default async function Home() {
             muted 
             loop 
             playsInline
-            poster="/hero-image-1.png"
+            poster="/Max in simmulator.jpg"
           >
             <source src="/hero-racing-video.mp4" type="video/mp4" />
             {/* Fallback to image if video fails */}
             <img 
-              src="/hero-image-1.png" 
+              src="/Max in simmulator.jpg" 
               alt="Racing Action" 
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -437,9 +437,9 @@ export default async function Home() {
               <div className="bg-gradient-to-br from-rr-neon-green/15 to-rr-black border border-rr-neon-green/50 rounded-xl p-6 text-center shadow-xl">
                 <div className="relative inline-block mb-4">
                   <img
-                    src="/max-profile.jpg"
-                    alt="Max Racing"
-                    className="w-28 h-28 rounded-full border-4 border-rr-gold shadow-2xl"
+                    src="/Max by bmw gpt.jpg"
+                    alt="Max Racing with BMW GT Car"
+                    className="w-28 h-28 rounded-full border-4 border-rr-gold shadow-2xl object-cover"
                   />
                   {latestPodium && (
                     <div className="absolute -top-2 -right-2 bg-rr-gold text-rr-black rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold animate-pulse">

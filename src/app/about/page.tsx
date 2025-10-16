@@ -62,13 +62,13 @@ export default async function About() {
             muted 
             loop 
             playsInline
-            poster="/max-profile.jpg"
+            poster="/Max in simmulator.jpg"
           >
             <source src="/aboutpageheroimage.mp4" type="video/mp4" />
             {/* Fallback to image if video fails */}
-            <img 
-              src="/max-profile.jpg" 
-              alt="Max Racing" 
+            <img
+              src="/Max in simmulator.jpg"
+              alt="Max Racing in Simulator"
               className="absolute inset-0 w-full h-full object-cover"
             />
           </video>
@@ -197,9 +197,9 @@ export default async function About() {
             <div className="bg-gradient-to-br from-rr-gold/20 to-rr-black border-2 border-rr-gold rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300">
               <div className="text-center">
                 <div className="w-32 h-32 mx-auto mb-6">
-                  <img 
-                    src="/max-profile.jpg" 
-                    alt="Max - Rocky Racing Driver" 
+                  <img
+                    src="/Max by bmw gpt.jpg"
+                    alt="Max - Rocky Racing Driver with BMW GT Car"
                     className="w-32 h-32 rounded-full object-cover border-4 border-rr-gold shadow-xl"
                   />
                 </div>
