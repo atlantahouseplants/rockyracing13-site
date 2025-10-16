@@ -173,7 +173,7 @@ export default async function Home() {
               <p className="font-heading text-3xl sm:text-4xl text-rr-gold font-black tracking-wide" style={{textShadow: '0 0 40px rgba(212, 175, 55, 1), 0 0 80px rgba(212, 175, 55, 0.8), 0 8px 20px rgba(0, 0, 0, 1), 2px 2px 0px rgba(0, 0, 0, 1)', WebkitTextStroke: '0.5px rgba(0, 0, 0, 0.8)'}}>
                 13-YEAR-OLD <span className="text-rr-neon-green font-black animate-pulse" style={{textShadow: '0 0 35px rgba(0, 255, 65, 1), 0 0 70px rgba(0, 255, 65, 0.8), 0 8px 20px rgba(0, 0, 0, 1), 2px 2px 0px rgba(0, 0, 0, 1)', WebkitTextStroke: '0.5px rgba(0, 0, 0, 0.9)'}}>SPEED DEMON</span>
               </p>
-              <p className="font-heading text-lg sm:text-xl text-rr-gold font-black mt-2" style={{textShadow: '0 0 35px rgba(212, 175, 55, 1), 0 0 70px rgba(212, 175, 55, 0.8), 0 6px 15px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)'}}
+              <p className="font-heading text-lg sm:text-xl text-rr-gold font-black mt-2" style={{textShadow: '0 0 35px rgba(212, 175, 55, 1), 0 0 70px rgba(212, 175, 55, 0.8), 0 6px 15px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)'}}>
                 🎮 iRACING CHAMPION IN THE MAKING 🎮
               </p>
             </div>
@@ -362,7 +362,7 @@ export default async function Home() {
                   </div>
                   {latestPodium && (
                     <div className="bg-rr-gold/30 border border-rr-gold/50 rounded-lg p-3 text-center col-span-2 md:col-span-1">
-                      <span className="text-rr-gold text-xs block font-semibold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 1)'}}}>PODIUM TYPE</span>
+                      <span className="text-rr-gold text-xs block font-semibold" style={{textShadow: '0 2px 4px rgba(0, 0, 0, 1)'}}>PODIUM TYPE</span>
                       <p className="text-rr-gold font-bold text-sm" style={{textShadow: '0 0 15px rgba(212, 175, 55, 0.8), 0 2px 6px rgba(0, 0, 0, 1), 1px 1px 0px rgba(0, 0, 0, 1)'}}>
                         {finishPositionText === 'P1' ? 'VICTORY! 🥇' :
                          finishPositionText === 'P2' ? 'RUNNER-UP 🥈' :
