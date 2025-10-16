@@ -123,8 +123,8 @@ export default async function Home() {
         {/* Hero Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/max-in-simulator-racing.jpg"
-            alt="Max Racing in Professional Simulator"
+            src="/max-with-race-car-and-team.jpg"
+            alt="Max with Professional Porsche Race Car"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
