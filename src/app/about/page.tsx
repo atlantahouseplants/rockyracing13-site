@@ -54,28 +54,17 @@ export default async function About() {
     <div className="min-h-screen bg-rr-black overflow-hidden">
       {/* EPIC ABOUT HERO SECTION */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Hero Background Video */}
+        {/* Hero Background Image */}
         <div className="absolute inset-0 z-0">
-          <video 
+          <img
+            src="/max-at-racetrack-portrait.jpg"
+            alt="Max at Professional Racing Track"
             className="absolute inset-0 w-full h-full object-cover"
-            autoPlay 
-            muted 
-            loop 
-            playsInline
-            poster="/Max in simmulator.jpg"
-          >
-            <source src="/aboutpageheroimage.mp4" type="video/mp4" />
-            {/* Fallback to image if video fails */}
-            <img
-              src="/Max in simmulator.jpg"
-              alt="Max Racing in Simulator"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          </video>
-          
+          />
+
           {/* Enhanced dark overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-br from-rr-black/85 via-rr-black/75 to-rr-black/85"></div>
-          
+
           {/* Racing effects overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-rr-gold/10 to-transparent"></div>
         </div>
@@ -334,6 +323,158 @@ export default async function About() {
                 </div>
               )
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* RACING JOURNEY PHOTO GALLERY */}
+      <section className="py-16 bg-gradient-to-br from-gray-950 to-rr-black relative">
+        <div className="absolute inset-0 opacity-10">
+          <div className="checkered-bg h-full"></div>
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-5xl text-rr-white mb-4">
+              📸 MAX IN ACTION 📸
+            </h2>
+            <p className="text-xl text-rr-gold font-bold">
+              FROM SIMULATORS TO REAL TRACKS - THE RACING JOURNEY!
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Photo 1 - Chevrolet Motorsports */}
+            <div className="group relative bg-gradient-to-br from-rr-gold/20 to-rr-black border-2 border-rr-gold/60 rounded-xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300">
+              <img
+                src="/max-with-chevrolet-motorsports-car.jpg"
+                alt="Max with Chevrolet Motorsports Car"
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-rr-gold font-bold text-lg mb-1">Chevrolet Motorsports Event</h3>
+                <p className="text-rr-white text-sm">Experiencing professional racing displays</p>
+              </div>
+            </div>
+
+            {/* Photo 2 - Racing Helmet Portrait */}
+            <div className="group relative bg-gradient-to-br from-rr-electric-blue/20 to-rr-black border-2 border-rr-electric-blue/60 rounded-xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300">
+              <img
+                src="/max-racing-helmet-portrait.jpg"
+                alt="Max in Racing Helmet"
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-rr-electric-blue font-bold text-lg mb-1">Ready to Race</h3>
+                <p className="text-rr-white text-sm">Suited up and prepared for competition</p>
+              </div>
+            </div>
+
+            {/* Photo 3 - Simulator Racing */}
+            <div className="group relative bg-gradient-to-br from-rr-neon-green/20 to-rr-black border-2 border-rr-neon-green/60 rounded-xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300">
+              <img
+                src="/max-in-simulator-racing-2.jpg"
+                alt="Max Racing in Professional Simulator"
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-rr-neon-green font-bold text-lg mb-1">Sim Racing Focus</h3>
+                <p className="text-rr-white text-sm">Honing skills on professional simulators</p>
+              </div>
+            </div>
+
+            {/* Photo 4 - Race Car Smiling */}
+            <div className="group relative bg-gradient-to-br from-rr-racing-red/20 to-rr-black border-2 border-rr-racing-red/60 rounded-xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300">
+              <img
+                src="/max-in-race-car-smiling.jpg"
+                alt="Max in Race Car"
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-rr-racing-red font-bold text-lg mb-1">Living the Dream</h3>
+                <p className="text-rr-white text-sm">Behind the wheel of a race car</p>
+              </div>
+            </div>
+
+            {/* Photo 5 - With Race Car and Team */}
+            <div className="group relative bg-gradient-to-br from-rr-speed-yellow/20 to-rr-black border-2 border-rr-speed-yellow/60 rounded-xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300">
+              <img
+                src="/max-with-race-car-and-team.jpg"
+                alt="Max with Race Car and Team"
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-rr-speed-yellow font-bold text-lg mb-1">Track Day Success</h3>
+                <p className="text-rr-white text-sm">Celebrating with the racing community</p>
+              </div>
+            </div>
+
+            {/* Photo 6 - At Track with Crowd */}
+            <div className="group relative bg-gradient-to-br from-rr-gold/20 to-rr-black border-2 border-rr-gold/60 rounded-xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300">
+              <img
+                src="/max-at-track-with-crowd.jpg"
+                alt="Max at Racing Track Event"
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-rr-gold font-bold text-lg mb-1">Race Day Atmosphere</h3>
+                <p className="text-rr-white text-sm">Experiencing the energy of live racing</p>
+              </div>
+            </div>
+
+            {/* Photo 7 - Open Wheel Car */}
+            <div className="group relative bg-gradient-to-br from-rr-electric-blue/20 to-rr-black border-2 border-rr-electric-blue/60 rounded-xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300">
+              <img
+                src="/max-in-open-wheel-car.jpg"
+                alt="Max in Open Wheel Race Car"
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-rr-electric-blue font-bold text-lg mb-1">Formula Experience</h3>
+                <p className="text-rr-white text-sm">Getting hands-on with open wheel racing</p>
+              </div>
+            </div>
+
+            {/* Photo 8 - Racetrack Portrait */}
+            <div className="group relative bg-gradient-to-br from-rr-neon-green/20 to-rr-black border-2 border-rr-neon-green/60 rounded-xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300">
+              <img
+                src="/max-at-racetrack-portrait-2.jpg"
+                alt="Max at Racetrack"
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-rr-neon-green font-bold text-lg mb-1">Track Side Portrait</h3>
+                <p className="text-rr-white text-sm">On location at professional racing venues</p>
+              </div>
+            </div>
+
+            {/* Photo 9 - 2023 Race Car */}
+            <div className="group relative bg-gradient-to-br from-rr-racing-red/20 to-rr-black border-2 border-rr-racing-red/60 rounded-xl overflow-hidden shadow-xl transform hover:scale-105 transition-all duration-300">
+              <img
+                src="/max-with-race-car-2023.jpg"
+                alt="Max with Race Car 2023"
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-4">
+                <h3 className="text-rr-racing-red font-bold text-lg mb-1">2023 Racing Season</h3>
+                <p className="text-rr-white text-sm">Building experience year after year</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="text-rr-white text-lg mb-6 font-semibold" style={{textShadow: '0 2px 6px rgba(0, 0, 0, 0.9)'}}>
+              Want to see more racing action? Follow our journey on YouTube!
+            </p>
+            <a
+              href="https://youtube.com/@rockyracing13"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-xl text-xl font-bold hover:shadow-2xl transform hover:scale-110 transition-all duration-300"
+            >
+              <Play size={24} />
+              WATCH ON YOUTUBE
+            </a>
           </div>
         </div>
       </section>

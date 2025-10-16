@@ -120,29 +120,18 @@ export default async function Home() {
     <div className="min-h-screen bg-rr-black overflow-hidden">
       {/* EPIC RACING HERO SECTION */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Hero Background Video/Image */}
+        {/* Hero Background Image */}
         <div className="absolute inset-0 z-0">
-          <video 
+          <img
+            src="/max-in-simulator-racing.jpg"
+            alt="Max Racing in Professional Simulator"
             className="absolute inset-0 w-full h-full object-cover"
-            autoPlay 
-            muted 
-            loop 
-            playsInline
-            poster="/Max in simmulator.jpg"
-          >
-            <source src="/hero-racing-video.mp4" type="video/mp4" />
-            {/* Fallback to image if video fails */}
-            <img 
-              src="/Max in simmulator.jpg" 
-              alt="Racing Action" 
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          </video>
-          
+          />
+
           {/* Enhanced dark overlay for better text readability */}
           <div className="absolute inset-0 bg-gradient-to-br from-rr-black/92 via-rr-black/88 to-rr-black/92"></div>
 
-          {/* Stronger contrast overlay - removed gold overlay that caused conflicts */}
+          {/* Stronger contrast overlay for consistent text visibility */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-rr-black/10 to-rr-black/20"></div>
         </div>
 
