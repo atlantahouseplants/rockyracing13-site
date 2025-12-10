@@ -10,14 +10,28 @@ const config: Config = {
     extend: {
       colors: {
         rr: {
-          black: '#000000',
-          gold: '#D4AF37',
-          white: '#FFFFFF',
-          'neon-green': '#00FF41',
-          'electric-blue': '#00BFFF',
-          'racing-red': '#FF0040',
-          'cyber-purple': '#9D00FF',
-          'speed-yellow': '#FFFF00',
+          // Primary colors - clean, professional
+          black: '#0A0A0B',
+          white: '#FAFAFA',
+          gold: '#C9A227',
+
+          // Accent colors - use sparingly
+          accent: '#2563EB',
+          success: '#059669',
+          warning: '#D97706',
+
+          // Gray scale for UI
+          gray: {
+            900: '#18181B',
+            800: '#27272A',
+            700: '#3F3F46',
+            600: '#52525B',
+            500: '#71717A',
+            400: '#A1A1AA',
+            300: '#D4D4D8',
+            200: '#E4E4E7',
+            100: '#F4F4F5',
+          },
         },
       },
       fontFamily: {

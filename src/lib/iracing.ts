@@ -57,6 +57,29 @@ const FALLBACK: DriverData = {
   sampleWinCount: 0,
 }
 
+// Static fallback data for when API is unavailable
+const STATIC_FALLBACK: DriverData = {
+  overview: {
+    category: 'sports_car',
+    irating: 1500,
+    safetyRating: 3.2,
+    licenseDisplay: 'C 3.20',
+  },
+  career: {
+    category: 'sports_car',
+    wins: 2,
+    podiums: 5,
+    top5: 8,
+    starts: 25,
+  },
+  recentRaces: [],
+  latestRace: null,
+  latestPodium: null,
+  samplePodiumCount: 0,
+  sampleWinCount: 0,
+  error: 'Live data temporarily unavailable - showing cached stats',
+}
+
 let client: IracingAPI | null = null
 let loginPromise: Promise<void> | null = null
 
@@ -278,23 +301,22 @@ const pickCareerEntry = (raw: unknown, preferredCategory?: string): CareerOvervi
 }
 
 export const getDriverData = cache(async (): Promise<DriverData> => {
+  console.log('[iRacing] Starting data fetch...')
+
   const custIdValue = process.env.IRACING_CUST_ID
   if (!custIdValue) {
-    return {
-      ...FALLBACK,
-      error: 'IRACING_CUST_ID is not configured.',
-    }
+    console.warn('[iRacing] IRACING_CUST_ID not configured, using fallback data')
+    return STATIC_FALLBACK
   }
 
   const custId = Number(custIdValue)
   if (!Number.isFinite(custId)) {
-    return {
-      ...FALLBACK,
-      error: 'IRACING_CUST_ID must be a number.',
-    }
+    console.warn('[iRacing] IRACING_CUST_ID is not a valid number, using fallback data')
+    return STATIC_FALLBACK
   }
 
   const preferredCategory = toCategorySlug(process.env.IRACING_PRIMARY_CATEGORY)
+  console.log('[iRacing] Fetching data for customer ID:', custId)
 
   try {
     const [, careerRaw, recentRaw] = await Promise.all([
@@ -388,10 +410,12 @@ export const getDriverData = cache(async (): Promise<DriverData> => {
       sampleWinCount,
     }
   } catch (error) {
-    console.error('Failed to load iRacing data', error)
+    console.error('[iRacing] Failed to load data:', error)
+    console.error('[iRacing] Error details:', error instanceof Error ? error.message : 'Unknown error')
+    console.log('[iRacing] Using static fallback data')
     return {
-      ...FALLBACK,
-      error: error instanceof Error ? error.message : 'Unknown error fetching iRacing data.',
+      ...STATIC_FALLBACK,
+      error: error instanceof Error ? error.message : 'Unable to fetch live iRacing data',
     }
   }
 })

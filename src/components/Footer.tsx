@@ -35,8 +35,8 @@ export default function Footer() {
             <Link href="/" className="flex items-center mb-4">
               <Logo />
             </Link>
-            <p className="text-gray-400 text-sm max-w-md">
-              From Sim to Reality. Following a 13-year-old&apos;s racing journey with transparency, 
+            <p className="text-rr-gray-400 text-sm max-w-md">
+              From Sim to Reality. Following a 13-year-old&apos;s racing journey with transparency,
               sportsmanship, and community support. Parent-supervised communications.
             </p>
             <div className="mt-4">
@@ -57,7 +57,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="text-gray-400 hover:text-rr-white transition-colors duration-200 text-sm"
+                    className="text-rr-gray-400 hover:text-rr-white transition-colors duration-200 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -74,7 +74,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="text-gray-400 hover:text-rr-white transition-colors duration-200 text-sm"
+                    className="text-rr-gray-400 hover:text-rr-white transition-colors duration-200 text-sm"
                   >
                     {link.name}
                   </Link>
@@ -88,7 +88,7 @@ export default function Footer() {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="text-gray-400 hover:text-rr-gold transition-colors duration-200"
+                  className="text-rr-gray-400 hover:text-rr-gold transition-colors duration-200"
                   aria-label={social.name}
                   target={social.href !== '#' ? '_blank' : undefined}
                   rel={social.href !== '#' ? 'noopener noreferrer' : undefined}
@@ -103,11 +103,11 @@ export default function Footer() {
         {/* Mini Sponsors Row */}
         <div className="mt-8 pt-8 border-t border-rr-gold/20">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-500 text-sm">
+            <p className="text-rr-gray-500 text-sm">
               © {new Date().getFullYear()} Rocky Racing. All rights reserved.
             </p>
             <div className="mt-4 md:mt-0">
-              <p className="text-gray-500 text-xs">
+              <p className="text-rr-gray-500 text-xs">
                 Sponsor placeholders - real partnerships coming soon
               </p>
             </div>
