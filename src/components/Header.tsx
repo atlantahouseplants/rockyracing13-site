@@ -10,12 +10,9 @@ export default function Header() {
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Team', href: '/team' },
+    { name: 'The Team', href: '/team' },
     { name: 'Watch', href: '/watch' },
-    { name: 'Schedule & Results', href: '/schedule' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Support', href: '/support' },
+    { name: 'Schedule', href: '/schedule' },
     { name: 'Sponsors', href: '/sponsors' },
     { name: 'Contact', href: '/contact' },
   ]
@@ -29,10 +26,10 @@ export default function Header() {
               <Logo />
             </Link>
           </div>
-          
+
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            {navigation.slice(0, 6).map((item) => (
+          <div className="hidden md:flex md:items-center md:space-x-6">
+            {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
@@ -74,6 +71,13 @@ export default function Header() {
                   {item.name}
                 </Link>
               ))}
+              <Link
+                href="/support"
+                className="block px-3 py-2 text-rr-gold font-semibold transition-colors duration-200 text-base"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Support Us
+              </Link>
             </div>
           </div>
         )}

@@ -92,6 +92,7 @@ const getClient = () => {
 
 const ensureLoggedIn = async () => {
   if (loginPromise) {
+    console.log('[iRacing] Already logged in, reusing session')
     return loginPromise
   }
 
@@ -99,17 +100,24 @@ const ensureLoggedIn = async () => {
   const password = process.env.IRACING_PASSWORD
 
   if (!email || !password) {
+    console.error('[iRacing] Missing credentials - email:', !!email, 'password:', !!password)
     throw new Error('Missing IRACING_EMAIL or IRACING_PASSWORD environment variables.')
   }
+
+  console.log('[iRacing] Attempting login for:', email)
 
   loginPromise = getClient()
     .login(email, password)
     .then((res) => {
+      console.log('[iRacing] Login response type:', typeof res)
+      console.log('[iRacing] Login response:', JSON.stringify(res, null, 2))
       if (res && typeof res === 'object' && 'error' in res && res.error) {
         throw new Error(String(res.error))
       }
+      console.log('[iRacing] Login successful!')
     })
     .catch((error) => {
+      console.error('[iRacing] Login failed:', error)
       loginPromise = null
       throw error
     })
@@ -319,11 +327,23 @@ export const getDriverData = cache(async (): Promise<DriverData> => {
   console.log('[iRacing] Fetching data for customer ID:', custId)
 
   try {
-    const [, careerRaw, recentRaw] = await Promise.all([
+    console.log('[iRacing] Making API calls...')
+
+    const [summaryRaw, careerRaw, recentRaw] = await Promise.all([
       withAuth((api) => api.stats.memberSummary({ custId })),
       withAuth((api) => api.stats.memberCareer({ custId })),
       withAuth((api) => api.stats.memberRecentRaces({ custId })),
     ])
+
+    // Log raw API responses for debugging
+    console.log('[iRacing] === RAW API RESPONSES ===')
+    console.log('[iRacing] memberSummary keys:', summaryRaw ? Object.keys(summaryRaw as object) : 'null')
+    console.log('[iRacing] memberSummary:', JSON.stringify(summaryRaw, null, 2).slice(0, 1000))
+    console.log('[iRacing] memberCareer keys:', careerRaw ? Object.keys(careerRaw as object) : 'null')
+    console.log('[iRacing] memberCareer:', JSON.stringify(careerRaw, null, 2).slice(0, 1000))
+    console.log('[iRacing] memberRecentRaces keys:', recentRaw ? Object.keys(recentRaw as object) : 'null')
+    console.log('[iRacing] memberRecentRaces:', JSON.stringify(recentRaw, null, 2).slice(0, 2000))
+    console.log('[iRacing] === END RAW RESPONSES ===')
 
     // Extract career stats - this has the win/podium data
     // Sports Car category has the most activity, so prioritize that

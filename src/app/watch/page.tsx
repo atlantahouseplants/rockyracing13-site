@@ -10,8 +10,8 @@ export default function Watch() {
     <div className="min-h-screen bg-rr-black text-rr-white py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="font-heading text-5xl text-rr-white mb-6">Watch Rocky Racing</h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+          <h1 className="font-heading text-5xl text-rr-gold mb-6">WATCH ROCKY RACING</h1>
+          <p className="text-xl text-rr-gray-400 max-w-3xl mx-auto mb-8">
             Follow our racing journey with race highlights, setup tutorials, and behind-the-scenes content
           </p>
         </div>

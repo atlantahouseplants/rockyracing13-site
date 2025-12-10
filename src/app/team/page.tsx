@@ -1,16 +1,16 @@
 import { Metadata } from 'next'
-import { Users, Youtube, Mail, Download } from 'lucide-react'
+import { Users, Youtube, Mail, Download, Trophy, Heart, Target, Play } from 'lucide-react'
 import Link from 'next/link'
 import { getDriverData } from '@/lib/iracing'
 
 export const metadata: Metadata = {
-  title: 'Rocky Racing Team - Meet Our Drivers',
-  description: 'Meet the Rocky Racing team members, download our media kit, and learn about our Friends of Rocky Racing community.',
+  title: 'The Team - Rocky Racing',
+  description: 'Meet the Rocky Racing team - Max Wall (13-year-old driver), his dad (team manager), and Rocky the Gecko mascot. A father-son racing journey from sim to reality.',
 }
 
 export default async function Team() {
   const driverData = await getDriverData()
-  const { overview, career, latestRace, latestPodium, error } = driverData
+  const { overview, career, latestRace, latestPodium } = driverData
 
   const iratingDisplay = overview?.irating !== null && overview?.irating !== undefined
     ? Math.round(overview.irating).toLocaleString()
@@ -30,25 +30,48 @@ export default async function Team() {
 
   const latestResult = latestPodium || latestRace
 
+  const values = [
+    {
+      icon: Trophy,
+      title: 'Sportsmanship',
+      description: 'Racing clean and fair, respecting competitors and the spirit of motorsports.',
+    },
+    {
+      icon: Heart,
+      title: 'Transparency',
+      description: 'Open about our journey, finances, and challenges. Building trust with our community.',
+    },
+    {
+      icon: Users,
+      title: 'Inclusion',
+      description: 'Welcoming everyone to our community regardless of experience or background.',
+    },
+    {
+      icon: Target,
+      title: 'Growth',
+      description: 'Constantly learning, improving, and sharing knowledge with others.',
+    }
+  ]
+
   return (
     <div className="min-h-screen bg-rr-black">
       {/* Hero Section */}
       <section className="relative min-h-[70vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <img
-            src="/Max by bmw gpt.jpg"
-            alt="Max with BMW GT Car"
+            src="/max-at-racetrack-portrait.jpg"
+            alt="Max at Racing Track"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-rr-black/80 via-rr-black/70 to-rr-black"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-rr-black/85 via-rr-black/75 to-rr-black"></div>
         </div>
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
           <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl text-rr-gold mb-4">
-            TEAM ROCKY
+            THE TEAM
           </h1>
-          <p className="text-xl md:text-2xl text-rr-white/90 mb-8">
-            Meet the racing legends behind Rocky Racing
+          <p className="text-xl md:text-2xl text-rr-white mb-8">
+            A father-son racing journey from sim to reality
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
@@ -58,14 +81,14 @@ export default async function Team() {
               className="inline-flex items-center gap-3 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
             >
               <Youtube size={20} />
-              Follow Us
+              Watch Us Race
             </a>
             <Link
-              href="/about"
+              href="/support"
               className="inline-flex items-center gap-3 border-2 border-rr-gold text-rr-gold px-6 py-3 rounded-lg font-semibold hover:bg-rr-gold hover:text-rr-black transition-colors"
             >
-              <Users size={20} />
-              Our Story
+              <Heart size={20} />
+              Support Us
             </Link>
           </div>
         </div>
@@ -74,7 +97,7 @@ export default async function Team() {
       {/* Max - The Driver */}
       <section className="py-16 md:py-24 bg-rr-gray-900">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="font-heading text-4xl text-rr-white text-center mb-12">
+          <h2 className="font-heading text-4xl text-rr-gold text-center mb-12">
             THE DRIVER
           </h2>
 
@@ -83,12 +106,12 @@ export default async function Team() {
             <div className="bg-rr-black rounded-xl p-8 border border-rr-gray-700">
               <div className="text-center mb-6">
                 <img
-                  src="/Max in simmulator.jpg"
+                  src="/Max by bmw gpt.jpg"
                   alt="Max Wall - Rocky Racing Driver"
                   className="w-36 h-36 rounded-full object-cover border-4 border-rr-gold mx-auto mb-4"
                 />
                 <h3 className="font-heading text-3xl text-rr-white mb-2">MAX WALL</h3>
-                <p className="text-rr-gold font-semibold mb-4">Lead Driver & Content Creator</p>
+                <p className="text-rr-gold font-semibold mb-4">Age 13 - Lead Driver & Content Creator</p>
               </div>
 
               <p className="text-rr-gray-400 text-center mb-6">
@@ -175,7 +198,7 @@ export default async function Team() {
       {/* Support Crew */}
       <section className="py-16 md:py-24 bg-rr-black">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="font-heading text-4xl text-rr-white text-center mb-4">
+          <h2 className="font-heading text-4xl text-rr-gold text-center mb-4">
             THE SUPPORT CREW
           </h2>
           <p className="text-rr-gray-400 text-center mb-12">
@@ -210,7 +233,7 @@ export default async function Team() {
                 <p className="text-rr-success font-medium mb-4">Team Mascot & Good Luck Charm</p>
                 <p className="text-rr-gray-400">
                   Our legendary mascot and the heart of the team! Rocky has been present
-                  for every podium finish and brings the good vibes that make racing fun.
+                  for every podium finish. Those distinctive gold scales even inspired our team colors!
                 </p>
               </div>
             </div>
@@ -218,10 +241,105 @@ export default async function Team() {
         </div>
       </section>
 
+      {/* Racing Code / Values */}
+      <section className="py-16 md:py-24 bg-rr-gray-900">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-4xl text-rr-gold mb-4">
+              OUR RACING CODE
+            </h2>
+            <p className="text-rr-gray-400 max-w-2xl mx-auto">
+              The principles that drive every lap, every race, every victory.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {values.map((value, index) => (
+              <div key={index} className="bg-rr-black rounded-xl p-6 border border-rr-gray-700 hover:border-rr-gold/50 transition-colors">
+                <value.icon size={36} className="text-rr-gold mb-4" />
+                <h3 className="font-heading text-xl text-rr-white mb-2">{value.title}</h3>
+                <p className="text-rr-gray-400 text-sm">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Photo Gallery */}
+      <section className="py-16 md:py-24 bg-rr-black">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="font-heading text-4xl text-rr-gold mb-4">
+              THE RACING JOURNEY
+            </h2>
+            <p className="text-rr-gray-400">
+              From simulators to real tracks - building experience every day.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="aspect-square rounded-lg overflow-hidden">
+              <img
+                src="/max-with-chevrolet-motorsports-car.jpg"
+                alt="Max at Chevrolet Motorsports Event"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="aspect-square rounded-lg overflow-hidden">
+              <img
+                src="/max-racing-helmet-portrait.jpg"
+                alt="Max in Racing Helmet"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="aspect-square rounded-lg overflow-hidden">
+              <img
+                src="/max-in-simulator-racing-2.jpg"
+                alt="Max Sim Racing"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="aspect-square rounded-lg overflow-hidden">
+              <img
+                src="/max-in-race-car-smiling.jpg"
+                alt="Max in Race Car"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="aspect-square rounded-lg overflow-hidden">
+              <img
+                src="/max-in-open-wheel-car.jpg"
+                alt="Max in Open Wheel Car"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+            <div className="aspect-square rounded-lg overflow-hidden">
+              <img
+                src="/max-at-racetrack-portrait-2.jpg"
+                alt="Max at Racetrack"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+          </div>
+
+          <div className="text-center mt-12">
+            <a
+              href="https://youtube.com/@rockyracing13"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-red-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+            >
+              <Play size={20} />
+              Watch More on YouTube
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Media & Press */}
       <section className="py-16 md:py-24 bg-rr-gray-900">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="font-heading text-4xl text-rr-white mb-4">
+          <h2 className="font-heading text-4xl text-rr-gold mb-4">
             MEDIA & PRESS
           </h2>
           <p className="text-rr-gray-400 mb-8">
