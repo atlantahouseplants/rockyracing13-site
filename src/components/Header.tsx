@@ -13,7 +13,7 @@ export default function Header() {
     { name: 'The Team', href: '/team' },
     { name: 'Races', href: '/races' },
     { name: 'Results', href: '/results' },
-    { name: 'Schedule', href: '/schedule' },
+    { name: 'Resources', href: '/resources' },
     { name: 'Join', href: '/join' },
     { name: 'Sponsors', href: '/sponsors' },
     { name: 'Contact', href: '/contact' },

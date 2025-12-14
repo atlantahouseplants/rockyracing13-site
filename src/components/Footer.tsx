@@ -19,6 +19,12 @@ export default function Footer() {
     { name: 'Contact', href: '/contact' },
   ]
 
+  const resourceLinks = [
+    { name: 'Strategy Calculator', href: 'https://strategy.rockyracing13.com', external: true },
+    { name: 'Telemetry Coach', href: 'https://telemetry.rockyracing13.com', external: true },
+    { name: 'All Resources', href: '/resources', external: false },
+  ]
+
   const legalLinks = [
     { name: 'Privacy Policy', href: '/legal/privacy' },
     { name: 'Terms of Service', href: '/legal/terms' },
@@ -54,7 +60,7 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
+                  <Link
                     href={link.href}
                     className="text-rr-gray-400 hover:text-rr-white transition-colors duration-200 text-sm"
                   >
@@ -65,13 +71,41 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Legal & Social */}
+          {/* Resources & Legal */}
           <div>
-            <h3 className="text-rr-gold font-heading text-lg mb-4">Legal</h3>
+            <h3 className="text-rr-gold font-heading text-lg mb-4">Resources</h3>
             <ul className="space-y-2 mb-6">
+              {resourceLinks.map((link) => (
+                <li key={link.name}>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-rr-gray-400 hover:text-rr-white transition-colors duration-200 text-sm inline-flex items-center gap-1"
+                    >
+                      {link.name}
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-rr-gray-400 hover:text-rr-white transition-colors duration-200 text-sm"
+                    >
+                      {link.name}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+
+            <h3 className="text-rr-gold font-heading text-lg mb-4">Legal</h3>
+            <ul className="space-y-2">
               {legalLinks.map((link) => (
                 <li key={link.name}>
-                  <Link 
+                  <Link
                     href={link.href}
                     className="text-rr-gray-400 hover:text-rr-white transition-colors duration-200 text-sm"
                   >
@@ -80,8 +114,8 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            
-            <h3 className="text-rr-gold font-heading text-lg mb-4">Follow</h3>
+
+            <h3 className="text-rr-gold font-heading text-lg mb-4 mt-6">Follow</h3>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
                 <a
