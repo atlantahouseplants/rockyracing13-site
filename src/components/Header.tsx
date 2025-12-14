@@ -11,8 +11,10 @@ export default function Header() {
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'The Team', href: '/team' },
-    { name: 'Watch', href: '/watch' },
+    { name: 'Races', href: '/races' },
+    { name: 'Results', href: '/results' },
     { name: 'Schedule', href: '/schedule' },
+    { name: 'Join', href: '/join' },
     { name: 'Sponsors', href: '/sponsors' },
     { name: 'Contact', href: '/contact' },
   ]
